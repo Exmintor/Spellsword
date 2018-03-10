@@ -1,0 +1,95 @@
+The game is a 2D turn-based RPG with tile movement.
+
+-Player can move around in a top-down 2D world on a tile based grid (World Interface)
+-Player can see Items, Equipment and Monsters in the world (occupying a tile)
+	-By walking on the same tile as the object/entity, they pick it up or begin a fight
+-Player can equip different weapons (Equipment Interface)
+	-Weapons have one enchantment slot for Weapon Abilities.
+-Player can use items while in the world (Inventory Interface)
+-Player can fight monsters in a turn-based battle to gain levels (Combat Interface)
+	-In battle, Player can select an ability to use (Ability Interface)
+-Playe gains levels by defeating monsters, and can use the levels to strengthen their character or buy new Abilities (Talent Interface)
+
+-The player controls a single character.
+-They move on a grid.
+-Each level contains a boss.
+-The objective of the level is to defeat the boss.
+-The levels also contain regular enemies and items.
+-The player gains experience by killing enemies and bosses.
+-The player can use this experience to level up.
+-Perhaps each enemy gives one level regardless of their difficulty.
+-They level up via a Talent Tree.
+-Each level gained gives the player one point to spend in this talent tree.
+-When a player defeats a boss, they advance to the next level with all of the gear and abilities they have.
+-Abilities have a Physical/Mental stat requirement (to encourage players to increase their stats instead of just going for new abilities).
+(-If the player dies, they start the level from scratch (with all of the equipment and abilities they had at the start of the level).)
+(-This forces the player to think in terms of health as a resource. Should they engage an enemy to gain experience, or leave it so that they have more health for the boss.)
+
+Things:
+-Player
+-Enemy
+    -Different types
+        -Different strengths
+-Equipment
+    -Different types
+        -Different strengths
+-Items
+    -Different types
+        -Different strengths
+-Abilities
+    -Different types
+        -Iteration on each Ability
+    -Passive/Active/Weapon
+-Special Tiles
+    -Heals the player to full health/a certain amount (can only be used once).
+
+The players have several choices of weaponry:
+-Sword
+-Shield
+-Spellcasting Focus
+
+The Abilities a person can use depend on their choice of weapons.
+Only a Spellcasting Focus can cast Spells.
+Only a Sword can use Sword Arts.
+Only a Shield can use Shield Techniques.
+
+A player can hold two weapons (one in each hand).
+Each round, the player can choose one action for each weapon.
+If they are holding two swords, f.e. they can make two attacks.
+If they are holding a shield, they might be able to use a Shield technique (that might leave them vulnerable).
+If they have a Spellcasting Focus, they can use it to cast a spell.
+
+Passive Abilities:
+-Increase Strength (Physical Damage)
+-Increase Mind (Magical Damage)
+-Increase all Fire Damage
+-Increase all Lightning Damage
+-Increase all Ice Damage
+-Increase Sword Damage - Scales from Strength
+-Increase Shield Resistance - Scales from Strength
+-Increase Fist Damage - Scales from Strength
+
+Weapon Abilities: - Each Weapon has one slot for a Weapon Ability
+-Fire Enchant (Sword/Shield/Focus) - Does not scale, only provides element
+-Lightning Enchant (Sword/Shield/Focus) - Does not scale, only provides element
+-Ice Enchant (Sword/Shield/Focus) - Does not scale, only provides element
+-Conjure Sword (Focus) - Scales from Strength and Mind
+-Conjure Shield (Focus) - Scales from Strength and Mind
+-Use Sword as Focus (you can now cast spells with your Sword) - Spells scale from Mind
+-Use Shield as Focus (you can now cast spells with your Shield) - Spells scale from Mind
+
+Activate Abilities:
+-Fireball (Focus) - Scales with Mind
+-Lightning Bolt (Focus) - Scales with Mind
+-Ice Lance (Focus) - Scales with Mind
+-Shield (Focus) - Scales with Mind
+-Shield Bash (Shield/ Conjured Shield)
+-Sword Strike (Sword/Conjured Sword)
+
+(Elemental damage is calculated separately from physical/magical damage. F.e. if a Sword has a fire enchant, it deals Physical Fire damage, whereas a Fireball deals Magical Fire damage. This way, one can enchant a focus to deal Physical elemental damage when used as a fist weapon. Elemental damage does not scale with stats, but might provide an advantage/disadvantage against a certain type of enemy.)
+
+Battle:
+(Declare which type of object the player is attacking with -- Sword/Shield/Focus)
+-Attack
+-Ability
+-Defend
