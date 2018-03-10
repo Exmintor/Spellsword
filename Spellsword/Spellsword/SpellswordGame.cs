@@ -22,7 +22,6 @@ namespace Spellsword
             int size = (11 * 32) + 11 - 1;
             graphics.PreferredBackBufferHeight = size;
             graphics.PreferredBackBufferWidth = size;
-            graphics.IsFullScreen = true;
             Content.RootDirectory = "Content";
 
             this.CurrentState = GameState.World;
