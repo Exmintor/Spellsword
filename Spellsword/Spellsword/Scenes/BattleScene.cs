@@ -22,6 +22,8 @@ namespace Spellsword.Scenes
         {
             this.game = game;
             ChangeCombatants(player, enemy);
+
+            battleQueue = new Queue<BattleAction>();
         }
 
         public void ChangeCombatants(Entity player, Entity enemy)
@@ -47,18 +49,23 @@ namespace Spellsword.Scenes
 
         public void Update(GameTime gameTime)
         {
-            if(turnInProgress)
+            //Temp test
+            if (Keyboard.GetState().IsKeyDown(Keys.Q))
             {
-                ResolveTurn();
+                game.SwitchToWorld();
+            }
+            player.Update();
+            enemy.Update();
+            if (turnInProgress)
+            {
+                if(player.HasTakenTurn && enemy.HasTakenTurn)
+                {
+                    ResolveTurn();
+                }
             }
             else
             {
                 TakeTurn();
-            }
-            //Temp test
-            if(Keyboard.GetState().IsKeyDown(Keys.Q))
-            {
-                game.SwitchToWorld();
             }
         }
 
@@ -71,21 +78,15 @@ namespace Spellsword.Scenes
             else
             {
                 turnInProgress = false;
+                player.ResetTurnChecker();
+                enemy.ResetTurnChecker();
             }
         }
 
         private void TakeTurn()
         {
-            battleQueue.Enqueue(player.TakeTurn());
-            if(player is BattlePlayer)
-            {
-                battleQueue.Enqueue(((BattlePlayer)player).TakeSecondTurn());
-            }
-            battleQueue.Enqueue(enemy.TakeTurn());
-            if (enemy is BattlePlayer)
-            {
-                battleQueue.Enqueue(((BattlePlayer)enemy).TakeSecondTurn());
-            }
+            player.TakeTurn();
+            enemy.TakeTurn();
             turnInProgress = true;
         }
 
@@ -101,10 +102,16 @@ namespace Spellsword.Scenes
             {
                 return enemy;
             }
-            else
+            else if(entityAsking == enemy)
             {
                 return player;
             }
+            return null;
+        }
+
+        public void QueueAction(BattleAction action)
+        {
+            battleQueue.Enqueue(action);
         }
     }
 }

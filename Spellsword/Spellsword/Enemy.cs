@@ -17,5 +17,11 @@ namespace Spellsword
         {
             throw new NotImplementedException();
         }
+
+        public override void TakeDamage(int damage)
+        {
+            //TODO: Override with damage calculation
+            base.TakeDamage(damage);
+        }
     }
 }

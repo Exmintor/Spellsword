@@ -15,11 +15,24 @@ namespace Spellsword
             this.ThisEntity = player;
         }
 
-        public BattleAction TakeSecondTurn()
+        public override void Update()
+        {
+            if(shouldAct)
+            {
+
+            }
+
+        } 
+        public void TakeSecondAction()
         {
             IAction action = ((Player)ThisEntity).ChooseSecondAction();
-            BattleAction battleAction = TakeTurn(action);
-            return battleAction;
+            BattleAction battleAction = TakeAction(action);
+            currentScene.QueueAction(battleAction);
+        }
+
+        public override void TakeTurn()
+        {
+            shouldAct = true;
         }
     }
 }
