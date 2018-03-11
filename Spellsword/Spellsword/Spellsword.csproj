@@ -41,8 +41,14 @@
     <Compile Include="Animation.cs" />
     <Compile Include="AnimationFrame.cs" />
     <Compile Include="Animator.cs" />
+    <Compile Include="Attack.cs" />
+    <Compile Include="BattleAction.cs" />
+    <Compile Include="BattleEnemy.cs" />
+    <Compile Include="BattleEntity.cs" />
+    <Compile Include="BattlePlayer.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="Entity.cs" />
+    <Compile Include="IAction.cs" />
     <Compile Include="IInteractable.cs" />
     <Compile Include="InputHandler.cs" />
     <Compile Include="Parameters.cs" />

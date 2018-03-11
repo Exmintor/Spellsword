@@ -12,5 +12,15 @@ namespace Spellsword
         {
 
         }
+
+        public override IAction ChooseAction()
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual IAction ChooseSecondAction()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

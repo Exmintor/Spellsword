@@ -8,5 +8,12 @@ namespace Spellsword
 {
     public abstract class Entity
     {
+        public int Health { get; protected set; }
+        public void TakeDamage(int damage)
+        {
+            this.Health -= damage;
+        }
+
+        public abstract IAction ChooseAction();
     }
 }
