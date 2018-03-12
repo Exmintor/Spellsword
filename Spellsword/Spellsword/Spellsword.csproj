@@ -93,13 +93,19 @@
     <Content Include="Content\BackwardsRightFoot.png" />
     <Content Include="Content\BackwardsStill.png" />
     <Content Include="Content\BaseTile.png" />
+    <Content Include="Content\BattleMenu.png" />
+    <Content Include="Content\BattleMusic.mp3" />
     <Content Include="Content\ForwardLeftFoot.png" />
     <Content Include="Content\ForwardRightFoot.png" />
     <Content Include="Content\ForwardStill.png" />
+    <Content Include="Content\Ghost.png" />
     <Content Include="Content\LeftStill.png" />
     <Content Include="Content\LeftWalking.png" />
+    <Content Include="Content\Menu.png" />
     <Content Include="Content\RightStill.png" />
     <Content Include="Content\RightWalking.png" />
+    <Content Include="Content\SpellSword.png" />
+    <Content Include="Content\WalkingMusic.mp3" />
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>

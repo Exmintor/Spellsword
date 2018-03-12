@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using Spellsword.Scenes;
 
 namespace Spellsword
@@ -8,6 +10,7 @@ namespace Spellsword
     public enum GameState { World, Paused, Battle, EquipmentMenu, TalentTree }
     public class SpellswordGame : Game
     {
+        Song currentSong;
         public GameState CurrentState { get; private set; }
 
         private GraphicsDeviceManager graphics;
@@ -25,6 +28,7 @@ namespace Spellsword
             Content.RootDirectory = "Content";
 
             this.CurrentState = GameState.World;
+            SwitchSong();
         }
 
         protected override void Initialize()
@@ -87,11 +91,29 @@ namespace Spellsword
         {
             this.battleScene.ChangeCombatants(this, player, enemy);
             this.CurrentState = GameState.Battle;
+            SwitchSong();
         }
 
         public void SwitchToWorld()
         {
             this.CurrentState = GameState.World;
+            SwitchSong();
+        }
+
+        private void SwitchSong()
+        {
+            MediaPlayer.Stop();
+            switch(CurrentState)
+            {
+                case GameState.World:
+                    currentSong = this.Content.Load<Song>("WalkingMusic");
+                    break;
+                case GameState.Battle:
+                    currentSong = this.Content.Load<Song>("BattleMusic");
+                    break;
+            }
+            MediaPlayer.Play(currentSong);
+            MediaPlayer.IsRepeating = true;
         }
     }
 }
