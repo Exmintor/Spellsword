@@ -8,17 +8,18 @@ namespace Spellsword
 {
     public class Player : Entity
     {
+        public IWeapon FirstWeapon { get; private set; }
+        public IWeapon SecondWeapon { get; private set; }
+
         public Player()
         {
+            FirstWeapon = new BasicSword();
+            SecondWeapon = new BasicFocus();
 
+            Health = 100;
         }
 
         public override IAction ChooseAction()
-        {
-            throw new NotImplementedException();
-        }
-
-        public virtual IAction ChooseSecondAction()
         {
             throw new NotImplementedException();
         }

@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace Spellsword
 {
-    public abstract class Attack : IAction
+    public class BasicFireball : Attack
     {
-        public int Damage { get; protected set; }
+        public BasicFireball()
+        {
+            this.Damage = 15;
+        }
     }
 }

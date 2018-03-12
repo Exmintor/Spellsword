@@ -8,14 +8,19 @@ namespace Spellsword
 {
     public class Enemy : Entity
     {
+        private IWeapon basicWeapon;
+
         public Enemy()
         {
+            basicWeapon = new BasicSword();
 
+            Health = 50;
         }
 
         public override IAction ChooseAction()
         {
-            throw new NotImplementedException();
+            IAction action = new BasicSwordAttack(basicWeapon);
+            return action;
         }
 
         public override void TakeDamage(int damage)

@@ -14,14 +14,18 @@ namespace Spellsword.Scenes
         private World thisWorld;
         private WalkingPlayer player;
         //Temp test
-        private WorldEnemy enemy;
+        private List<WorldEnemy> enemies;
         public WalkingScene(SpellswordGame game, World thisWorld, WalkingPlayer player)
         {
             this.game = game;
             this.thisWorld = thisWorld;
             this.player = player;
             //Temp test
-            this.enemy = new WorldEnemy(game, thisWorld);
+            enemies = new List<WorldEnemy>();
+            this.enemies.Add(new WorldEnemy(game, thisWorld, new Point(1,0)));
+            this.enemies.Add(new WorldEnemy(game, thisWorld, new Point(8, 1)));
+            this.enemies.Add(new WorldEnemy(game, thisWorld, new Point(2, 8)));
+            this.enemies.Add(new WorldEnemy(game, thisWorld, new Point(9, 8)));
         }
 
         public virtual void Update(GameTime gameTime)
@@ -39,7 +43,10 @@ namespace Spellsword.Scenes
             thisWorld.Draw(spriteBatch);
             player.Draw(spriteBatch);
             //Temp test
-            enemy.Draw(spriteBatch);
+            foreach(WorldEnemy enemy in enemies)
+            {
+                enemy.Draw(spriteBatch);
+            }
         }
 
         private void MoveEntireWorld(Vector2 amountToMove)
@@ -47,7 +54,10 @@ namespace Spellsword.Scenes
             thisWorld.StartingLocation += amountToMove;
             player.Location += amountToMove;
             //Temp test
-            enemy.Location += amountToMove;
+            foreach(WorldEnemy enemy in enemies)
+            {
+                enemy.Location += amountToMove;
+            }
         }
     }
 }

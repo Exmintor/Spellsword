@@ -75,6 +75,7 @@ namespace Spellsword
                     walkingScene.Draw(spriteBatch);
                     break;
                 case GameState.Battle:
+                    GraphicsDevice.Clear(Color.Red);
                     battleScene.Draw(spriteBatch);
                     break;
             }
@@ -84,7 +85,7 @@ namespace Spellsword
 
         public void InitiateBattle(Entity player, Entity enemy)
         {
-            this.battleScene.ChangeCombatants(player, enemy);
+            this.battleScene.ChangeCombatants(this, player, enemy);
             this.CurrentState = GameState.Battle;
         }
 

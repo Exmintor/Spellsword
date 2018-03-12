@@ -7,12 +7,11 @@ using System.Threading.Tasks;
 
 namespace Spellsword
 {
-    public abstract class BattleEntity
+    public abstract class BattleEntity : Sprite
     {
         protected BattleScene currentScene;
         public Entity ThisEntity { get; protected set; }
 
-        public bool HasTakenTurn { get; private set; }
         protected bool shouldAct;
 
         public virtual void Update()
@@ -21,7 +20,6 @@ namespace Spellsword
             {
                 BattleAction actionToAdd = TakeAction();
                 currentScene.QueueAction(actionToAdd);
-                HasTakenTurn = true;
                 shouldAct = false;
             }
         }
@@ -44,11 +42,6 @@ namespace Spellsword
             Entity target = battleTarget.ThisEntity;
             BattleAction battleAction = new BattleAction(target, action);
             return battleAction;
-        }
-
-        public void ResetTurnChecker()
-        {
-            HasTakenTurn = false;
         }
     }
 }
