@@ -24,6 +24,10 @@ namespace Spellsword
                 int damage = ((Attack)action).Damage;
                 target.TakeDamage(damage);
             }
+            if(action is Poison)
+            {
+                target.AddStatusEffect((Poison)action);
+            }
         }
     }
 }

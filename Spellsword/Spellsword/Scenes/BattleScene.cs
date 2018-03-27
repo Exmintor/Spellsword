@@ -9,9 +9,11 @@ using System.Threading.Tasks;
 
 namespace Spellsword.Scenes
 {
-    public enum BattleSceneState { Idle, Waiting, Menu, InProgress }
+    public enum BattleSceneState { UnResolveStatusEffects, Idle, Waiting, ResolveStatusEffects, InProgress }
     public class BattleScene
     {
+        public event Action BattleFinished;
+
         private SpellswordGame game;
         private BattleEntity player;
         private BattleEntity enemy;
@@ -59,6 +61,7 @@ namespace Spellsword.Scenes
             if(this.player.ThisEntity != null)
             {
                 this.player.ThisEntity.Died += EndCombat;
+                BattleFinished += player.RemoveAllStatusEffects;
             }
             if(this.enemy.ThisEntity != null)
             {
@@ -70,7 +73,14 @@ namespace Spellsword.Scenes
         {
             switch (currentState)
             {
+                case BattleSceneState.UnResolveStatusEffects:
+                    enemy.ThisEntity.UnResolveStatusEffects();
+                    player.ThisEntity.UnResolveStatusEffects();
+                    this.currentState = BattleSceneState.Idle;
+                    break;
                 case BattleSceneState.Idle:
+                    enemy.ThisEntity.UnResolveStatusEffects();
+                    player.ThisEntity.UnResolveStatusEffects();
                     TakeTurn();
                     break;
                 case BattleSceneState.Waiting:
@@ -80,6 +90,11 @@ namespace Spellsword.Scenes
                     {
                         currentMenu.Update();
                     }
+                    break;
+                case BattleSceneState.ResolveStatusEffects:
+                    enemy.ThisEntity.ResolveStatusEffects();
+                    player.ThisEntity.ResolveStatusEffects();
+                    this.currentState = BattleSceneState.InProgress;
                     break;
                 case BattleSceneState.InProgress:
                     ResolveTurn();
@@ -109,7 +124,7 @@ namespace Spellsword.Scenes
             }
             else
             {
-                currentState = BattleSceneState.Idle;
+                currentState = BattleSceneState.UnResolveStatusEffects;
             }
         }
 
@@ -140,7 +155,7 @@ namespace Spellsword.Scenes
 
         private void OnPlayerFinishedTurn()
         {
-            currentState = BattleSceneState.InProgress;
+            currentState = BattleSceneState.ResolveStatusEffects;
         }
 
         public void SetBattleMenu(BattleMenu menu)
@@ -150,6 +165,10 @@ namespace Spellsword.Scenes
 
         private void EndCombat()
         {
+            if (BattleFinished != null)
+            {
+                BattleFinished.Invoke();
+            }
             game.SwitchToWorld();
         }
     }

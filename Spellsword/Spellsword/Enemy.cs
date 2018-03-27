@@ -19,7 +19,7 @@ namespace Spellsword
 
         public override IAction ChooseAction()
         {
-            IAction action = new BasicSwordAttack(basicWeapon);
+            IAction action = new Poison(2, 15);
             return action;
         }
 
