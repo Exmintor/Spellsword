@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Spellsword
 {
-    public abstract class Weapon : IWeapon
+    public abstract class Weapon : Item,  IWeapon
     {
         public bool IsSword { get; protected set; }
         public bool IsShield { get; protected set; }

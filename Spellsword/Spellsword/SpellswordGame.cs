@@ -104,7 +104,7 @@ namespace Spellsword
         public void PauseGame()
         {
             this.CurrentState = GameState.Paused;
-            MediaPlayer.Stop();
+            MediaPlayer.Stop(); // Pause instead of stopping
         }
 
         private void SwitchSong()
