@@ -51,9 +51,9 @@ namespace Spellsword
         private void DrawCurrentWeapons(SpriteBatch spriteBatch)
         {
             Vector2 newLocation = this.Location + new Vector2(10, 10);
-            spriteBatch.DrawString(font, "1. First: " + player.FirstWeapon.Name, newLocation, Color.White);
+            spriteBatch.DrawString(font, "1st Hand: " + player.FirstWeapon.Name, newLocation, Color.White);
             Vector2 secondLocation = newLocation + new Vector2(0, 20);
-            spriteBatch.DrawString(font, "2. Second: " + player.SecondWeapon.Name, secondLocation, Color.White);
+            spriteBatch.DrawString(font, "2nd Hand: " + player.SecondWeapon.Name, secondLocation, Color.White);
         }
 
         private void DrawInventory(SpriteBatch spriteBatch)

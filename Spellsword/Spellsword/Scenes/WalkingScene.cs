@@ -18,6 +18,7 @@ namespace Spellsword.Scenes
         private WalkingPlayer player;
         //Temp test
         private List<WorldEnemy> enemies;
+        private List<WorldSword> swords;
         public WalkingScene(SpellswordGame game, World thisWorld, WalkingPlayer player)
         {
             inputHandler = game.Services.GetService<InputHandler>();
@@ -36,6 +37,11 @@ namespace Spellsword.Scenes
             this.enemies.Add(new WorldEnemy(game, thisWorld, new Point(8, 1)));
             this.enemies.Add(new WorldEnemy(game, thisWorld, new Point(2, 8)));
             this.enemies.Add(new WorldEnemy(game, thisWorld, new Point(9, 8)));
+            // More Temp Test
+            swords = new List<WorldSword>();
+            this.swords.Add(new WorldSword(game, thisWorld, new Point(0, 0)));
+            this.swords.Add(new WorldSword(game, thisWorld, new Point(5, 3)));
+            this.swords.Add(new WorldSword(game, thisWorld, new Point(10, 10)));
         }
 
         public virtual void Update(GameTime gameTime)
@@ -61,6 +67,10 @@ namespace Spellsword.Scenes
             {
                 enemy.Draw(spriteBatch);
             }
+            foreach(WorldSword sword in swords)
+            {
+                sword.Draw(spriteBatch);
+            }
         }
 
         private void MoveEntireWorld(Vector2 amountToMove)
@@ -71,6 +81,10 @@ namespace Spellsword.Scenes
             foreach(WorldEnemy enemy in enemies)
             {
                 enemy.Location += amountToMove;
+            }
+            foreach(WorldSword sword in swords)
+            {
+                sword.Location += amountToMove;
             }
         }
     }

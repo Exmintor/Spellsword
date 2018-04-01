@@ -43,9 +43,9 @@
     <Compile Include="Animation\Animator.cs" />
     <Compile Include="Actions\Attack.cs" />
     <Compile Include="Actions\BasicFireball.cs" />
-    <Compile Include="EquipmentMenu.cs" />
-    <Compile Include="EquipmentScene.cs" />
-    <Compile Include="Inventory.cs" />
+    <Compile Include="Menus\EquipmentMenu.cs" />
+    <Compile Include="Scenes\EquipmentScene.cs" />
+    <Compile Include="Equipment\Inventory.cs" />
     <Compile Include="Items\Item.cs" />
     <Compile Include="Items\BasicFocus.cs" />
     <Compile Include="Items\BasicSword.cs" />
@@ -54,7 +54,7 @@
     <Compile Include="Battle\BattleController.cs" />
     <Compile Include="Battle\BattleEnemy.cs" />
     <Compile Include="Battle\BattleEntity.cs" />
-    <Compile Include="MenuController.cs" />
+    <Compile Include="Equipment\MenuController.cs" />
     <Compile Include="Menus\BattleMenu.cs" />
     <Compile Include="Battle\BattlePlayer.cs" />
     <Compile Include="Enemies\Enemy.cs" />
@@ -81,7 +81,7 @@
     <Compile Include="Scenes\WalkingScene.cs" />
     <Compile Include="SpellswordGame.cs" />
     <Compile Include="Utility\Sprite.cs" />
-    <Compile Include="World\WorldItem.cs" />
+    <Compile Include="World\WorldSword.cs" />
     <Compile Include="World\Tile.cs" />
     <Compile Include="World\WalkingPlayer.cs" />
     <Compile Include="Items\Weapon.cs" />
@@ -101,6 +101,7 @@
     <Content Include="Content\BackwardsRightFoot.png" />
     <Content Include="Content\BackwardsStill.png" />
     <Content Include="Content\BaseTile.png" />
+    <Content Include="Content\BasicSword.png" />
     <Content Include="Content\BattleMenu.png" />
     <Content Include="Content\BattleMusic.mp3" />
     <Content Include="Content\EquipmentMenu.png" />

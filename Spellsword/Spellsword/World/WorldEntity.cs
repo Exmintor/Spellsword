@@ -12,5 +12,6 @@ namespace Spellsword
         protected SpellswordGame game;
         protected World gameWorld;
         protected Entity thisEntity;
+        protected Item thisItem;
     }
 }

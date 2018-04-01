@@ -56,5 +56,10 @@ namespace Spellsword
                     break;
             }
         }
+
+        public void GiveNewWeapon(IWeapon weapon)
+        {
+            Inventory.AddWeapon(weapon);
+        }
     }
 }
