@@ -11,6 +11,8 @@ namespace Spellsword
     public class SpellswordGame : Game
     {
         private Song currentSong;
+        private InputHandler inputHandler;
+
         private GameState currentState;
         public GameState CurrentState
         {
@@ -36,6 +38,13 @@ namespace Spellsword
 
         public SpellswordGame()
         {
+            inputHandler = this.Services.GetService<InputHandler>();
+            if (inputHandler == null)
+            {
+                inputHandler = new InputHandler(this);
+                this.Components.Add(inputHandler);
+            }
+
             graphics = new GraphicsDeviceManager(this);
             int size = (Parameters.numTiles * Parameters.tileSize) + Parameters.numTiles - 1;
             graphics.PreferredBackBufferHeight = size;
@@ -75,6 +84,10 @@ namespace Spellsword
                     walkingScene.Update(gameTime);
                     break;
                 case GameState.Paused:
+                    if(inputHandler.WasButtonPressed(Keys.P))
+                    {
+                        SwitchToWorld();
+                    }
                     break;
                 case GameState.Battle:
                     battleScene.Update(gameTime);
@@ -100,6 +113,7 @@ namespace Spellsword
                     break;
                 case GameState.Paused:
                     walkingScene.Draw(spriteBatch);
+                    spriteBatch.DrawString(Content.Load<SpriteFont>("Arial"), "Paused", new Vector2(150, 150), Color.Red);
                     break;
                 case GameState.Battle:
                     GraphicsDevice.Clear(Color.Red);
@@ -133,12 +147,16 @@ namespace Spellsword
             {
                 SwitchSong();
             }
+            if(previousState == GameState.Paused)
+            {
+                MediaPlayer.Resume();
+            }
         }
 
         public void PauseGame()
         {
             this.CurrentState = GameState.Paused;
-            MediaPlayer.Stop(); // Pause instead of stopping
+            MediaPlayer.Pause();
         }
 
         public void OpenEquipmentMenu(Player player)

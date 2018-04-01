@@ -46,7 +46,11 @@ namespace Spellsword.Scenes
 
         public virtual void Update(GameTime gameTime)
         {
-            if(inputHandler.WasButtonPressed(Keys.E))
+            if (inputHandler.WasButtonPressed(Keys.P))
+            {
+                game.PauseGame();
+            }
+            if (inputHandler.WasButtonPressed(Keys.E))
             {
                 game.OpenEquipmentMenu((Player)player.GetEntity());
             }
