@@ -53,7 +53,7 @@ namespace Spellsword
         public BattlePlayer(Game game, BattleScene currentScene, Player player)
         {
             this.CurrentSprite = game.Content.Load<Texture2D>("SpellSword");
-            this.Location = new Vector2(20, 20);
+            this.Location = Parameters.battlePlayerLocation;
 
             this.game = game;
 

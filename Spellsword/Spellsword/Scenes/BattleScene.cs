@@ -105,10 +105,22 @@ namespace Spellsword.Scenes
         public void Draw(SpriteBatch spriteBatch)
         {
             player.Draw(spriteBatch);
-            Vector2 playerHealthLocation = new Vector2(20, 10);
+            Vector2 playerHealthLocation = player.Location + Parameters.battlePlayerHealthOffset;
             spriteBatch.DrawString(game.Content.Load<SpriteFont>("Arial"), "Health: " + player.ThisEntity.Health, playerHealthLocation, Color.White);
+            Vector2 playerStatusLocation = player.Location + Parameters.battlePlayerStatusOffset;
+            foreach(IStatusEffect effect in player.ThisEntity.StatusEffects)
+            {
+                spriteBatch.DrawString(game.Content.Load<SpriteFont>("Arial"), effect.Name, playerStatusLocation, Color.White);
+                playerStatusLocation += Parameters.statusEffectOffset;
+            }
+            Vector2 enemyStatusLocation = enemy.Location + Parameters.battleEnemyStatusOffset;
+            foreach (IStatusEffect effect in enemy.ThisEntity.StatusEffects)
+            {
+                spriteBatch.DrawString(game.Content.Load<SpriteFont>("Arial"), effect.Name, enemyStatusLocation, Color.White);
+                enemyStatusLocation += Parameters.statusEffectOffset;
+            }
             enemy.Draw(spriteBatch);
-            Vector2 enemyHealthLocation = new Vector2(180, 10);
+            Vector2 enemyHealthLocation = enemy.Location + Parameters.battleEnemyHealthOffset;
             spriteBatch.DrawString(game.Content.Load<SpriteFont>("Arial"), "Health: " + enemy.ThisEntity.Health, enemyHealthLocation, Color.White);
             if (currentState == BattleSceneState.Waiting && currentMenu != null)
             {

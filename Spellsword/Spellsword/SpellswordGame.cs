@@ -11,7 +11,20 @@ namespace Spellsword
     public class SpellswordGame : Game
     {
         private Song currentSong;
-        public GameState CurrentState { get; private set; }
+        private GameState currentState;
+        public GameState CurrentState
+        {
+            get
+            {
+                return currentState;
+            }
+            private set
+            {
+                previousState = currentState;
+                currentState = value;
+            }
+        }
+        private GameState previousState;
 
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
@@ -107,7 +120,10 @@ namespace Spellsword
         public void SwitchToWorld()
         {
             this.CurrentState = GameState.World;
-            SwitchSong();
+            if(previousState == GameState.Battle)
+            {
+                SwitchSong();
+            }
         }
 
         public void PauseGame()

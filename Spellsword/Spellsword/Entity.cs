@@ -11,12 +11,12 @@ namespace Spellsword
         public event Action Died;
 
         public int Health { get; protected set; }
-        private List<IStatusEffect> statusEffects;
+        public  List<IStatusEffect> StatusEffects { get; private set; }
         private List<IStatusEffect> effectsToRemove;
 
         public Entity()
         {
-            statusEffects = new List<IStatusEffect>();
+            StatusEffects = new List<IStatusEffect>();
             effectsToRemove = new List<IStatusEffect>();
         }
         public virtual void TakeDamage(int damage)
@@ -32,15 +32,15 @@ namespace Spellsword
         }
         public virtual void AddStatusEffect(IStatusEffect effect)
         {
-            statusEffects.Add(effect);
+            StatusEffects.Add(effect);
         }
         protected virtual void RemoveStatusEffect(IStatusEffect effect)
         {
-            statusEffects.Remove(effect);
+            StatusEffects.Remove(effect);
         }
         public virtual void RemoveAllStatusEffects()
         {
-            foreach(IStatusEffect effect in statusEffects)
+            foreach(IStatusEffect effect in StatusEffects)
             {
                 effectsToRemove.Add(effect);
             }
@@ -48,8 +48,8 @@ namespace Spellsword
         }
         public virtual void ResolveStatusEffects()
         {
-            statusEffects = statusEffects.OrderByDescending(e => e.Priority).ToList();
-            foreach (IStatusEffect effect in statusEffects)
+            StatusEffects = StatusEffects.OrderByDescending(e => e.Priority).ToList();
+            foreach (IStatusEffect effect in StatusEffects)
             {
                 effect.Resolve(this);
                 if(effect.Duration <= 0)

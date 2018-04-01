@@ -14,7 +14,7 @@ namespace Spellsword
         public BattleEnemy(Game game, BattleScene currentScene, Enemy enemy)
         {
             this.CurrentSprite = game.Content.Load<Texture2D>("Ghost");
-            this.Location = new Vector2(180, 20);
+            this.Location = Parameters.battleEnemyLocation;
 
             this.currentScene = currentScene;
             this.ThisEntity = enemy;

@@ -22,6 +22,7 @@ namespace Spellsword
 
         public EquipmentMenu(Game game, Player player) : base(game)
         {
+            this.color = new Color(Color.Black, 0.85f);
             controller = new MenuController(game);
             CurrentSprite = game.Content.Load<Texture2D>("EquipmentMenu");
             this.AnchorTopRight(game);

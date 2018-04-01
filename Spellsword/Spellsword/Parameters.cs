@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,5 +16,16 @@ namespace Spellsword
         // Game size
         public static int numTiles = 11;
         public static int tileSize = 32;
+
+        // Battle Location Data
+        public static Vector2 battlePlayerLocation = new Vector2(50, 90);
+        public static Vector2 battlePlayerHealthOffset = new Vector2(5, -20);
+        public static Vector2 battlePlayerStatusOffset = new Vector2(-40, 0);
+
+        public static Vector2 battleEnemyLocation = new Vector2(180, 80);
+        public static Vector2 battleEnemyHealthOffset = new Vector2(10, -20);
+        public static Vector2 battleEnemyStatusOffset = new Vector2(40, 0);
+
+        public static Vector2 statusEffectOffset = new Vector2(0, 20);
     }
 }

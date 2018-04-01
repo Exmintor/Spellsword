@@ -10,6 +10,7 @@ namespace Spellsword
     {
         int Duration { get; }
         int Priority { get; }
+        string Name { get; }
 
         void Resolve(Entity attachedEntity);
         void UnResolve(Entity attachedEntity);

@@ -12,10 +12,13 @@ namespace Spellsword
 
         public int Priority { get; private set; }
 
+        public string Name { get; private set; }
+
         private int damagePerTurn;
 
         public Poison(int duration, int damagePerTurn)
         {
+            this.Name = "Poison";
             this.Duration = duration;
             this.damagePerTurn = damagePerTurn;
 
