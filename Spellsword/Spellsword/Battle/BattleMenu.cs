@@ -51,7 +51,7 @@ namespace Spellsword
 
         public void AttackAction()
         {
-            IAction action = new BasicSwordAttack(currentWeapon);
+            IAction action = new BasicSwordAttack(player, currentWeapon);
             if(ActionChosen != null)
             {
                 ActionChosen.Invoke(action);
@@ -78,7 +78,7 @@ namespace Spellsword
             if(currentWeapon.IsFocus)
             {
                 // Grab the action from the player's spell list instead.
-                IAction action = new BasicFireball();
+                IAction action = new BasicFireball(player);
                 if (ActionChosen != null)
                 {
                     ActionChosen.Invoke(action);

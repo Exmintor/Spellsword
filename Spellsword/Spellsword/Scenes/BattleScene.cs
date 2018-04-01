@@ -175,8 +175,12 @@ namespace Spellsword.Scenes
             this.currentMenu = menu;
         }
 
-        private void EndCombat()
+        private void EndCombat(Entity entityThatDied)
         {
+            if(entityThatDied is Enemy)
+            {
+                ((Player)player.ThisEntity).GainTalentPoints(((Enemy)entityThatDied).PointsOnDefeat);
+            }
             if (BattleFinished != null)
             {
                 BattleFinished.Invoke();

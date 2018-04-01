@@ -32,7 +32,7 @@ namespace Spellsword
             game.InitiateBattle(agentInteracting, this.thisEntity);
         }
 
-        private void OnEntityDied()
+        private void OnEntityDied(Entity entityThatDied)
         {
             gameWorld.UnregisterEntity(pointLocation);
             shouldDraw = false;

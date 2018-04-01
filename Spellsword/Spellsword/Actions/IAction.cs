@@ -8,6 +8,6 @@ namespace Spellsword
 {
     public interface IAction
     {
-
+        Entity User { get; }
     }
 }

@@ -100,7 +100,7 @@ namespace Spellsword
         private void OnActionChosen(IAction actionChosen)
         {
             BattleEntity target = currentScene.GetOpponent(this);
-            BattleAction action = new BattleAction(target.ThisEntity, actionChosen);
+            BattleAction action = new BattleAction(this.ThisEntity, target.ThisEntity, actionChosen);
             currentScene.QueueAction(action);
             hasFinishedAction = true;
         }

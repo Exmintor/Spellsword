@@ -9,17 +9,21 @@ namespace Spellsword
     public class Enemy : Entity
     {
         private IWeapon basicWeapon;
-
+        public int PointsOnDefeat { get; private set; }
         public Enemy()
         {
             basicWeapon = new BasicSword();
 
             Health = 50;
+            Strength = 1;
+            Magic = 1;
+
+            PointsOnDefeat = 1;
         }
 
         public override IAction ChooseAction()
         {
-            IAction action = new Poison(2, 15);
+            IAction action = new Poison(this, 2, 15);
             return action;
         }
 

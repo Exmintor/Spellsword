@@ -40,7 +40,7 @@ namespace Spellsword
         {
             BattleEntity battleTarget = currentScene.GetOpponent(this);
             Entity target = battleTarget.ThisEntity;
-            BattleAction battleAction = new BattleAction(target, action);
+            BattleAction battleAction = new BattleAction(this.ThisEntity, target, action);
             return battleAction;
         }
     }

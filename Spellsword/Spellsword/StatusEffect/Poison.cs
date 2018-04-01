@@ -8,6 +8,7 @@ namespace Spellsword
 {
     public class Poison : IAction, IStatusEffect
     {
+        public Entity User { get; protected set; }
         public int Duration { get; private set; }
 
         public int Priority { get; private set; }
@@ -16,11 +17,12 @@ namespace Spellsword
 
         private int damagePerTurn;
 
-        public Poison(int duration, int damagePerTurn)
+        public Poison(Entity attacker, int duration, int damagePerTurn)
         {
+            this.User = attacker;
             this.Name = "Poison";
             this.Duration = duration;
-            this.damagePerTurn = damagePerTurn;
+            this.damagePerTurn = damagePerTurn + User.Magic;
 
             this.Priority = 2;
         }

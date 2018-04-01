@@ -8,9 +8,12 @@ namespace Spellsword
 {
     public abstract class Entity
     {
-        public event Action Died;
+        public event Action<Entity> Died;
 
         public int Health { get; protected set; }
+        public int Strength { get; protected set; }
+        public int Magic { get; protected set; }
+
         public  List<IStatusEffect> StatusEffects { get; private set; }
         private List<IStatusEffect> effectsToRemove;
 
@@ -26,9 +29,18 @@ namespace Spellsword
             {
                 if(Died != null)
                 {
-                    Died.Invoke();
+                    Died.Invoke(this);
                 }
             }
+        }
+
+        public virtual void IncreaseStrength(int amount)
+        {
+            Strength += amount;
+        }
+        public virtual void IncreaseMagic(int amount)
+        {
+            Magic += amount;
         }
         public virtual void AddStatusEffect(IStatusEffect effect)
         {

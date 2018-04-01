@@ -8,9 +8,10 @@ namespace Spellsword
 {
     public class BasicFireball : Attack
     {
-        public BasicFireball()
+        public BasicFireball(Entity attacker)
         {
-            this.Damage = 15;
+            this.User = attacker;
+            this.Damage = 15 + User.Magic;
         }
     }
 }

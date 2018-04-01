@@ -8,6 +8,7 @@ namespace Spellsword
 {
     public abstract class Attack : IAction
     {
+        public Entity User { get; protected set; }
         public int Damage { get; protected set; }
     }
 }

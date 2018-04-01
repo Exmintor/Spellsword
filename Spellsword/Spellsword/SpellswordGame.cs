@@ -32,6 +32,7 @@ namespace Spellsword
         private WalkingScene walkingScene;
         private BattleScene battleScene;
         private EquipmentScene equipmentScene;
+        private TalentScene talentScene;
 
         public SpellswordGame()
         {
@@ -54,6 +55,7 @@ namespace Spellsword
             walkingScene = new WalkingScene(this, gameWorld, player);
             battleScene = null; //new BattleScene(this, null, null);
             equipmentScene = null;
+            talentScene = null;
         }
 
         protected override void LoadContent()
@@ -80,6 +82,9 @@ namespace Spellsword
                 case GameState.EquipmentMenu:
                     equipmentScene.Update(gameTime);
                     break;
+                case GameState.TalentTree:
+                    talentScene.Update(gameTime);
+                    break;
             }
             base.Update(gameTime);
         }
@@ -103,6 +108,10 @@ namespace Spellsword
                 case GameState.EquipmentMenu:
                     walkingScene.Draw(spriteBatch);
                     equipmentScene.Draw(spriteBatch);
+                    break;
+                case GameState.TalentTree:
+                    walkingScene.Draw(spriteBatch);
+                    talentScene.Draw(spriteBatch);
                     break;
             }
             spriteBatch.End();
@@ -136,6 +145,12 @@ namespace Spellsword
         {
             equipmentScene = new EquipmentScene(this, player);
             this.CurrentState = GameState.EquipmentMenu;
+        }
+
+        public void OpenTalentMenu(Player player)
+        {
+            talentScene = new TalentScene(this, player);
+            this.CurrentState = GameState.TalentTree;
         }
 
         private void SwitchSong()

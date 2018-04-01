@@ -50,6 +50,10 @@ namespace Spellsword.Scenes
             {
                 game.OpenEquipmentMenu((Player)player.GetEntity());
             }
+            if (inputHandler.WasButtonPressed(Keys.Q))
+            {
+                game.OpenTalentMenu((Player)player.GetEntity());
+            }
             Vector2 oldPlayerLocation = player.Location;
             player.Update(gameTime);
             if (player.Location != oldPlayerLocation)
