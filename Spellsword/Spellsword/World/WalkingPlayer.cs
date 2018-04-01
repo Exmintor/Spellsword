@@ -215,5 +215,10 @@ namespace Spellsword
         {
             MovementQueue.Push(movement);
         }
+
+        public Entity GetEntity()
+        {
+            return thisEntity;
+        }
     }
 }
