@@ -42,9 +42,10 @@ namespace Spellsword
         {
             Vector2 newLocation = this.Location + new Vector2(10, 10);
             spriteBatch.DrawString(font, "1. Attack", newLocation, Color.White);
+            spriteBatch.DrawString(font, "2. Defend", this.Location + new Vector2(100, 10), Color.White);
             if(currentWeapon.IsFocus)
             {
-                spriteBatch.DrawString(font, "2. Fireball", newLocation + new Vector2(0, 30), Color.White);
+                spriteBatch.DrawString(font, "3. Fireball", newLocation + new Vector2(0, 30), Color.White);
             }
             spriteBatch.DrawString(font, "Attacking with " + currentWeapon.Name, newLocation + new Vector2(10, -40), Color.White);
         }
@@ -60,7 +61,11 @@ namespace Spellsword
 
         public void DefendAction()
         {
-            throw new NotImplementedException();
+            IAction action = new Defend(player, 1, currentWeapon);
+            if (ActionChosen != null)
+            {
+                ActionChosen.Invoke(action);
+            }
         }
 
         public void SwordAction()

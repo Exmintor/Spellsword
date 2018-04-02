@@ -28,6 +28,7 @@ namespace Spellsword
             Health = 100;
             Strength = 1;
             Magic = 1;
+            Defense = 1;
             TalentPoints = 3;
         }
 

@@ -62,7 +62,7 @@ namespace Spellsword
             World gameWorld = new World(gameSize, Content.Load<Texture2D>("BaseTile"));
             WalkingPlayer player = new WalkingPlayer(this, gameWorld);
             walkingScene = new WalkingScene(this, gameWorld, player);
-            battleScene = null; //new BattleScene(this, null, null);
+            battleScene = null;
             equipmentScene = null;
             talentScene = null;
         }
@@ -135,7 +135,6 @@ namespace Spellsword
         public void InitiateBattle(Entity player, Entity enemy)
         {
             this.battleScene = new BattleScene(this, player, enemy);
-            //this.battleScene.ChangeCombatants(this, player, enemy);
             this.CurrentState = GameState.Battle;
             SwitchSong();
         }

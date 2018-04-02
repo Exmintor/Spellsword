@@ -17,6 +17,7 @@ namespace Spellsword
             Health = 50;
             Strength = 1;
             Magic = 1;
+            Defense = 1;
 
             PointsOnDefeat = 1;
         }

@@ -27,13 +27,18 @@ namespace Spellsword
             this.Priority = 2;
         }
 
-        public void Resolve(Entity thisEntity)
+        public void Tick(Entity thisEntity)
         {
             thisEntity.TakeDamage(damagePerTurn);
             Duration--;
         }
 
-        public void UnResolve(Entity thisEntity)
+        public void Apply(Entity thisEntity)
+        {
+            //Do Nothing
+        }
+
+        public void Remove(Entity thisEntity)
         {
             //Do nothing
         }

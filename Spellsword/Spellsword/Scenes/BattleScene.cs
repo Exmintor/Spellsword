@@ -79,8 +79,6 @@ namespace Spellsword.Scenes
                     this.currentState = BattleSceneState.Idle;
                     break;
                 case BattleSceneState.Idle:
-                    enemy.ThisEntity.UnResolveStatusEffects();
-                    player.ThisEntity.UnResolveStatusEffects();
                     TakeTurn();
                     break;
                 case BattleSceneState.Waiting:

@@ -30,6 +30,10 @@ namespace Spellsword
             }
             if(inputHandler.WasButtonPressed(Keys.D2))
             {
+                menu.DefendAction();
+            }
+            if(inputHandler.WasButtonPressed(Keys.D3))
+            {
                 menu.SpellAction(0);
             }
         }

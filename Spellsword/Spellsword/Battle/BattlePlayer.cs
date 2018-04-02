@@ -99,7 +99,15 @@ namespace Spellsword
 
         private void OnActionChosen(IAction actionChosen)
         {
-            BattleEntity target = currentScene.GetOpponent(this);
+            BattleEntity target;
+            if(actionChosen is Defend)
+            {
+                target = this;
+            }
+            else
+            {
+                target = currentScene.GetOpponent(this);
+            }
             BattleAction action = new BattleAction(this.ThisEntity, target.ThisEntity, actionChosen);
             currentScene.QueueAction(action);
             hasFinishedAction = true;

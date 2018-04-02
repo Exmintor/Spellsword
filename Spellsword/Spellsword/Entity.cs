@@ -13,6 +13,7 @@ namespace Spellsword
         public int Health { get; protected set; }
         public int Strength { get; protected set; }
         public int Magic { get; protected set; }
+        public int Defense { get; set; } // Abstract property, add setter
 
         public  List<IStatusEffect> StatusEffects { get; private set; }
         private List<IStatusEffect> effectsToRemove;
@@ -24,7 +25,7 @@ namespace Spellsword
         }
         public virtual void TakeDamage(int damage)
         {
-            this.Health -= damage;
+            this.Health -= damage - Defense;
             if(this.Health <= 0)
             {
                 if(Died != null)
@@ -45,10 +46,12 @@ namespace Spellsword
         public virtual void AddStatusEffect(IStatusEffect effect)
         {
             StatusEffects.Add(effect);
+            effect.Apply(this);
         }
         protected virtual void RemoveStatusEffect(IStatusEffect effect)
         {
             StatusEffects.Remove(effect);
+            effect.Remove(this);
         }
         public virtual void RemoveAllStatusEffects()
         {
@@ -63,7 +66,7 @@ namespace Spellsword
             StatusEffects = StatusEffects.OrderByDescending(e => e.Priority).ToList();
             foreach (IStatusEffect effect in StatusEffects)
             {
-                effect.Resolve(this);
+                effect.Tick(this);
                 if(effect.Duration <= 0)
                 {
                     effectsToRemove.Add(effect);
@@ -75,7 +78,6 @@ namespace Spellsword
             effectsToRemove = effectsToRemove.OrderByDescending(e => e.Priority).ToList();
             foreach (IStatusEffect effect in effectsToRemove)
             {
-                effect.UnResolve(this);
                 RemoveStatusEffect(effect);
             }
             effectsToRemove.Clear();
