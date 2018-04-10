@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Spellsword
 {
-    public class Enemy : Entity
+    public class Enemy : Character
     {
         private IWeapon basicWeapon;
         public int PointsOnDefeat { get; private set; }

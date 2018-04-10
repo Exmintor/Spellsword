@@ -8,7 +8,7 @@ namespace Spellsword
 {
     public class BasicSwordAttack : Attack
     {
-        public BasicSwordAttack(Entity attacker, IWeapon basicSword)
+        public BasicSwordAttack(Character attacker, IWeapon basicSword)
         {
             this.User = attacker;
             this.Damage = basicSword.Damage + User.Strength;

@@ -23,7 +23,7 @@ namespace Spellsword.Scenes
 
         private Queue<BattleAction> battleQueue;
 
-        public BattleScene(SpellswordGame game, Entity player, Entity enemy)
+        public BattleScene(SpellswordGame game, Character player, Character enemy)
         {
             this.game = game;
             ChangeCombatants(game, player, enemy);
@@ -34,7 +34,7 @@ namespace Spellsword.Scenes
             battleQueue = new Queue<BattleAction>();
         }
 
-        public void ChangeCombatants(Game game, Entity player, Entity enemy)
+        public void ChangeCombatants(Game game, Character player, Character enemy)
         {
             if (player is Player)
             {

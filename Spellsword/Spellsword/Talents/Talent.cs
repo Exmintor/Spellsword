@@ -10,6 +10,6 @@ namespace Spellsword
     {
         public abstract string Name { get; protected set; }
         public abstract int Cost { get; protected set; }
-        public abstract void ApplyTalent(Entity player);
+        public abstract void ApplyTalent(Character player);
     }
 }

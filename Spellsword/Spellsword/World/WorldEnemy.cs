@@ -18,7 +18,10 @@ namespace Spellsword
             this.game = game;
             this.gameWorld = gameWorld;
             thisEntity = new Enemy();
-            thisEntity.Died += OnEntityDied;
+            if(thisEntity is Character)
+            {
+                ((Character)thisEntity).Died += OnEntityDied;
+            }
 
             //Temp test
             this.CurrentSprite = game.Content.Load<Texture2D>("BackwardsStill");
@@ -27,9 +30,12 @@ namespace Spellsword
             gameWorld.RegisterEntity(this, pointLocation);
         }
 
-        public void Interact(Entity agentInteracting)
+        public void Interact(Character agentInteracting)
         {
-            game.InitiateBattle(agentInteracting, this.thisEntity);
+            if(thisEntity is Character)
+            {
+                game.InitiateBattle(agentInteracting, (Character)this.thisEntity);
+            }
         }
 
         private void OnEntityDied(Entity entityThatDied)

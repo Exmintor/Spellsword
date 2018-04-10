@@ -132,7 +132,7 @@ namespace Spellsword
             base.Draw(gameTime);
         }
 
-        public void InitiateBattle(Entity player, Entity enemy)
+        public void InitiateBattle(Character player, Character enemy)
         {
             this.battleScene = new BattleScene(this, player, enemy);
             this.CurrentState = GameState.Battle;

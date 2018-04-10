@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Spellsword
 {
-    public class Player : Entity
+    public class Player : Character
     {
         public IWeapon FirstWeapon { get; private set; }
         public IWeapon SecondWeapon { get; private set; }

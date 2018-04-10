@@ -8,7 +8,7 @@ namespace Spellsword
 {
     public class BasicFireball : Attack
     {
-        public BasicFireball(Entity attacker)
+        public BasicFireball(Character attacker)
         {
             this.User = attacker;
             this.Damage = 15 + User.Magic;

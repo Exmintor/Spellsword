@@ -204,9 +204,9 @@ namespace Spellsword
             if(gameWorld.IsOnMap(relativeLocation) && gameWorld.IsOccupied(relativeLocation))
             {
                 WorldEntity thingToInteractWith = gameWorld.GetEntityAtLocation(relativeLocation);
-                if (thingToInteractWith is IInteractable)
+                if (thingToInteractWith is IInteractable && thisEntity is Character)
                 {
-                    ((IInteractable)thingToInteractWith).Interact(this.thisEntity);
+                    ((IInteractable)thingToInteractWith).Interact((Character)this.thisEntity);
                 }
             }
         }

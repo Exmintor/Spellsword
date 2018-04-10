@@ -8,7 +8,7 @@ namespace Spellsword
 {
     public class Defend : IAction, IStatusEffect
     {
-        public Entity User { get; protected set; }
+        public Character User { get; protected set; }
 
         public string Name { get; protected set; }
         public int Duration { get; protected set; }
@@ -16,7 +16,7 @@ namespace Spellsword
 
         private IWeapon thisWeapon;
 
-        public Defend(Entity user, int duration, IWeapon weapon)
+        public Defend(Character user, int duration, IWeapon weapon)
         {
             this.User = user;
             this.Name = "Defend";
@@ -25,15 +25,15 @@ namespace Spellsword
             this.thisWeapon = weapon; ;
         }
 
-        public void Tick(Entity attachedEntity)
+        public void Tick(Character attachedEntity)
         {
             Duration--;
         }
-        public void Apply(Entity attachedEntity)
+        public void Apply(Character attachedEntity)
         {
             attachedEntity.Defense += thisWeapon.Defense;
         }
-        public void Remove(Entity attachedEntity)
+        public void Remove(Character attachedEntity)
         {
             attachedEntity.Defense -= thisWeapon.Defense;
         }

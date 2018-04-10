@@ -43,6 +43,7 @@
     <Compile Include="Animation\Animator.cs" />
     <Compile Include="Actions\Attack.cs" />
     <Compile Include="Actions\BasicFireball.cs" />
+    <Compile Include="Character.cs" />
     <Compile Include="StatusEffect\Defend.cs" />
     <Compile Include="Scenes\TalentScene.cs" />
     <Compile Include="Talents\MagicTalent.cs" />

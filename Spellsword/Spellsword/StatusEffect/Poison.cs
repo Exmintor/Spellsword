@@ -8,7 +8,7 @@ namespace Spellsword
 {
     public class Poison : IAction, IStatusEffect
     {
-        public Entity User { get; protected set; }
+        public Character User { get; protected set; }
         public int Duration { get; private set; }
 
         public int Priority { get; private set; }
@@ -17,7 +17,7 @@ namespace Spellsword
 
         private int damagePerTurn;
 
-        public Poison(Entity attacker, int duration, int damagePerTurn)
+        public Poison(Character attacker, int duration, int damagePerTurn)
         {
             this.User = attacker;
             this.Name = "Poison";
@@ -27,18 +27,18 @@ namespace Spellsword
             this.Priority = 2;
         }
 
-        public void Tick(Entity thisEntity)
+        public void Tick(Character thisEntity)
         {
             thisEntity.TakeDamage(damagePerTurn);
             Duration--;
         }
 
-        public void Apply(Entity thisEntity)
+        public void Apply(Character thisEntity)
         {
             //Do Nothing
         }
 
-        public void Remove(Entity thisEntity)
+        public void Remove(Character thisEntity)
         {
             //Do nothing
         }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Spellsword
 {
-    public abstract class Item
+    public abstract class Item : Entity
     {
 
     }

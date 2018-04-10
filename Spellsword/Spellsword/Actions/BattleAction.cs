@@ -8,11 +8,11 @@ namespace Spellsword
 {
     public class BattleAction
     {
-        private Entity attacker;
-        private Entity target;
+        private Character attacker;
+        private Character target;
         private IAction action;
 
-        public BattleAction(Entity attacker, Entity target, IAction action)
+        public BattleAction(Character attacker, Character target, IAction action)
         {
             this.attacker = attacker;
             this.target = target;

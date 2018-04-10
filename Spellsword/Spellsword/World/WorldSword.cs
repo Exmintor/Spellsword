@@ -19,7 +19,7 @@ namespace Spellsword
             this.game = game;
             this.gameWorld = gameWorld;
 
-            this.thisItem = new BasicSword();
+            this.thisEntity = new BasicSword();
 
             this.CurrentSprite = game.Content.Load<Texture2D>("BasicSword");
             this.pointLocation = startingLocation;
@@ -27,11 +27,11 @@ namespace Spellsword
             gameWorld.RegisterEntity(this, pointLocation);
         }
 
-        public void Interact(Entity agentInteracting)
+        public void Interact(Character agentInteracting)
         {
-            if(agentInteracting is Player)
+            if(agentInteracting is Player && thisEntity is IWeapon)
             {
-                ((Player)agentInteracting).GiveNewWeapon((IWeapon)thisItem);
+                ((Player)agentInteracting).GiveNewWeapon((IWeapon)thisEntity);
                 this.shouldDraw = false;
                 gameWorld.UnregisterEntity(pointLocation);
             }

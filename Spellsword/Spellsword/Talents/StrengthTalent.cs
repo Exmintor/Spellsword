@@ -16,7 +16,7 @@ namespace Spellsword
             Name = "Increase Strength";
             Cost = 1;
         }
-        public override void ApplyTalent(Entity player)
+        public override void ApplyTalent(Character player)
         {
             player.IncreaseStrength(1);
         }

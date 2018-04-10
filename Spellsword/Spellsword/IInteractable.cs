@@ -8,6 +8,6 @@ namespace Spellsword
 {
     public interface IInteractable
     {
-        void Interact(Entity agentInteracting);
+        void Interact(Character agentInteracting);
     }
 }

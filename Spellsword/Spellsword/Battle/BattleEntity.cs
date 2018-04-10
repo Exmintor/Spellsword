@@ -10,7 +10,7 @@ namespace Spellsword
     public abstract class BattleEntity : Sprite
     {
         protected BattleScene currentScene;
-        public Entity ThisEntity { get; protected set; }
+        public Character ThisEntity { get; protected set; }
 
         protected bool shouldAct;
 
@@ -39,7 +39,7 @@ namespace Spellsword
         protected virtual BattleAction TakeAction(IAction action)
         {
             BattleEntity battleTarget = currentScene.GetOpponent(this);
-            Entity target = battleTarget.ThisEntity;
+            Character target = battleTarget.ThisEntity;
             BattleAction battleAction = new BattleAction(this.ThisEntity, target, action);
             return battleAction;
         }

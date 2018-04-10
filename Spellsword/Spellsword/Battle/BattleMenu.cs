@@ -13,10 +13,10 @@ namespace Spellsword
         public event Action<IAction> ActionChosen;
 
         private BattleController controller;
-        private Entity player;
+        private Character player;
         private IWeapon currentWeapon;
 
-        public BattleMenu(Game game, Entity player, IWeapon weapon) : base(game)
+        public BattleMenu(Game game, Character player, IWeapon weapon) : base(game)
         {
             controller = new BattleController(game);
 

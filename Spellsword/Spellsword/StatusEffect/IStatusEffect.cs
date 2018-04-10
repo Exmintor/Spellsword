@@ -12,8 +12,8 @@ namespace Spellsword
         int Priority { get; }
         string Name { get; }
 
-        void Tick(Entity attachedEntity);
-        void Apply(Entity attachedEntity);
-        void Remove(Entity attachedEntity);
+        void Tick(Character attachedEntity);
+        void Apply(Character attachedEntity);
+        void Remove(Character attachedEntity);
     }
 }
