@@ -43,14 +43,14 @@
     <Compile Include="Animation\Animator.cs" />
     <Compile Include="Actions\Attack.cs" />
     <Compile Include="Actions\BasicFireball.cs" />
-    <Compile Include="AttackCommand.cs" />
-    <Compile Include="BackCommand.cs" />
+    <Compile Include="Battle\BattleCommands\AttackCommand.cs" />
+    <Compile Include="Battle\BattleCommands\BackCommand.cs" />
     <Compile Include="Character.cs" />
-    <Compile Include="DefendCommand.cs" />
-    <Compile Include="ISelfTargetAction.cs" />
+    <Compile Include="Battle\BattleCommands\DefendCommand.cs" />
+    <Compile Include="Actions\ISelfTargetAction.cs" />
     <Compile Include="ISpellswordCommand.cs" />
-    <Compile Include="NewSpellCommand.cs" />
-    <Compile Include="SpellSelectionCommand.cs" />
+    <Compile Include="Battle\BattleCommands\NewSpellCommand.cs" />
+    <Compile Include="Battle\BattleCommands\SpellSelectionCommand.cs" />
     <Compile Include="StatusEffect\Defend.cs" />
     <Compile Include="Scenes\TalentScene.cs" />
     <Compile Include="Talents\MagicTalent.cs" />
@@ -138,9 +138,7 @@
   <ItemGroup>
     <None Include="Content\Arial.spritefont" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Battle\BattleCommands\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
