@@ -16,7 +16,7 @@ namespace Spellsword
 
         private Animator animator;
         private PlayerController controller;
-        private Point currentTileLocation;
+        public Point CurrentTileLocation { get; private set; }
 
         private WalkingState previousWalkingState;
         private WalkingState currentWalkingState;
@@ -49,8 +49,8 @@ namespace Spellsword
 
             animator = new Animator(game, this);
             controller = new PlayerController(game);
-            this.currentTileLocation = new Point(5, 5);
-            this.Location = gameWorld.GetTileLocation(currentTileLocation);
+            this.CurrentTileLocation = new Point(8, 8);
+            this.Location = gameWorld.GetTileLocation(CurrentTileLocation);
 
             CurrentSprite = game.Content.Load<Texture2D>("ForwardStill");
             CurrentWalkingState = WalkingState.Still;
@@ -89,12 +89,13 @@ namespace Spellsword
             {
                 isWalking = true;
                 this.CurrentWalkingState = WalkingState.Up;
-                Point desiredTileLocation = new Point(currentTileLocation.X, currentTileLocation.Y - 1);
+                Point desiredTileLocation = new Point(CurrentTileLocation.X, CurrentTileLocation.Y - 1);
                 if (gameWorld.IsOnMap(desiredTileLocation) && !gameWorld.IsOccupied(desiredTileLocation))
                 {
                     QueueMovement(new Vector2(0, -1 * Parameters.pixelsMovedPerFrame));
                     QueueMovement(new Vector2(0, -1 * Parameters.pixelsMovedPerFrame));
-                    this.currentTileLocation.Y -= 1;
+                    //this.CurrentTileLocation.Y -= 1;
+                    this.CurrentTileLocation = new Point(CurrentTileLocation.X, CurrentTileLocation.Y - 1);
                 }
                 else
                 {
@@ -110,12 +111,13 @@ namespace Spellsword
             {
                 isWalking = true;
                 this.CurrentWalkingState = WalkingState.Down;
-                Point desiredTileLocation = new Point(currentTileLocation.X, currentTileLocation.Y + 1);
+                Point desiredTileLocation = new Point(CurrentTileLocation.X, CurrentTileLocation.Y + 1);
                 if (gameWorld.IsOnMap(desiredTileLocation) && !gameWorld.IsOccupied(desiredTileLocation))
                 {
                     QueueMovement(new Vector2(0, 1 * Parameters.pixelsMovedPerFrame));
                     QueueMovement(new Vector2(0, 1 * Parameters.pixelsMovedPerFrame));
-                    this.currentTileLocation.Y += 1;
+                    //this.CurrentTileLocation.Y += 1;
+                    this.CurrentTileLocation = new Point(CurrentTileLocation.X, CurrentTileLocation.Y + 1);
                 }
                 else
                 {
@@ -131,12 +133,13 @@ namespace Spellsword
             {
                 isWalking = true;
                 this.CurrentWalkingState = WalkingState.Left;
-                Point desiredTileLocation = new Point(currentTileLocation.X - 1, currentTileLocation.Y);
+                Point desiredTileLocation = new Point(CurrentTileLocation.X - 1, CurrentTileLocation.Y);
                 if (gameWorld.IsOnMap(desiredTileLocation) && !gameWorld.IsOccupied(desiredTileLocation))
                 {
                     QueueMovement(new Vector2(-1 * Parameters.pixelsMovedPerFrame, 0));
                     QueueMovement(new Vector2(-1 * Parameters.pixelsMovedPerFrame, 0));
-                    this.currentTileLocation.X -= 1;
+                    //this.CurrentTileLocation.X -= 1;
+                    this.CurrentTileLocation = new Point(CurrentTileLocation.X - 1, CurrentTileLocation.Y);
                 }
                 else
                 {
@@ -152,12 +155,13 @@ namespace Spellsword
             {
                 isWalking = true;
                 this.CurrentWalkingState = WalkingState.Right;
-                Point desiredTileLocation = new Point(currentTileLocation.X + 1, currentTileLocation.Y);
+                Point desiredTileLocation = new Point(CurrentTileLocation.X + 1, CurrentTileLocation.Y);
                 if (gameWorld.IsOnMap(desiredTileLocation) && !gameWorld.IsOccupied(desiredTileLocation))
                 {
                     QueueMovement(new Vector2(1 * Parameters.pixelsMovedPerFrame, 0));
                     QueueMovement(new Vector2(1 * Parameters.pixelsMovedPerFrame, 0));
-                    this.currentTileLocation.X += 1;
+                    //this.CurrentTileLocation.X += 1;
+                    this.CurrentTileLocation = new Point(CurrentTileLocation.X + 1, CurrentTileLocation.Y);
                 }
                 else
                 {
@@ -179,7 +183,7 @@ namespace Spellsword
         {
             if(!isWalking)
             {
-                Point locationToInteractWith = this.currentTileLocation;
+                Point locationToInteractWith = this.CurrentTileLocation;
                 switch (previousWalkingState)
                 {
                     case WalkingState.Left:

@@ -112,5 +112,10 @@ namespace Spellsword
             }
             return false;
         }
+
+        public Vector2 GetStartingMiddle()
+        {
+            return GetTileLocation(new Point(5, 5));
+        }
     }
 }

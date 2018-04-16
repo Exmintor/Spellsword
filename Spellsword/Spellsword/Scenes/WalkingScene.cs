@@ -42,6 +42,8 @@ namespace Spellsword.Scenes
             this.swords.Add(new WorldSword(game, thisWorld, new Point(0, 0)));
             this.swords.Add(new WorldSword(game, thisWorld, new Point(5, 3)));
             this.swords.Add(new WorldSword(game, thisWorld, new Point(10, 10)));
+
+            InitializePlayerToMiddle();
         }
 
         public virtual void Update(GameTime gameTime)
@@ -81,6 +83,14 @@ namespace Spellsword.Scenes
             }
         }
 
+        private void InitializePlayerToMiddle()
+        {
+            Point playerTileLocation = player.CurrentTileLocation;
+            Vector2 screenMiddle = thisWorld.GetStartingMiddle();
+            Vector2 playerLocation = thisWorld.GetTileLocation(playerTileLocation);
+            Vector2 offset = screenMiddle - playerLocation;
+            MoveEntireWorld(offset);
+        }
         private void MoveEntireWorld(Vector2 amountToMove)
         {
             thisWorld.StartingLocation += amountToMove;
