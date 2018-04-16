@@ -24,6 +24,7 @@ namespace Spellsword
             //Temp test
             Inventory.AddWeapon(new BasicSword());
             Inventory.AddWeapon(new BasicFocus());
+            SpellList.Add(new BasicFireball(this));
 
             Health = 100;
             Strength = 1;

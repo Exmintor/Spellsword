@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Spellsword
 {
-    public class Defend : IAction, IStatusEffect
+    public class Defend : ISelfTargetAction, IStatusEffect
     {
         public Character User { get; protected set; }
 
@@ -25,7 +25,14 @@ namespace Spellsword
             this.thisWeapon = weapon; ;
         }
 
-        public void Tick(Character attachedEntity)
+        public void BeforeTick(Character attachedEntity)
+        {
+            if(Duration <= 0)
+            {
+                attachedEntity.RemoveStatusEffect(this);
+            }
+        }
+        public void AfterTick(Character attachedEntity)
         {
             Duration--;
         }

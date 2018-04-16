@@ -100,7 +100,7 @@ namespace Spellsword
         private void OnActionChosen(IAction actionChosen)
         {
             BattleEntity target;
-            if(actionChosen is Defend)
+            if(actionChosen is ISelfTargetAction)
             {
                 target = this;
             }

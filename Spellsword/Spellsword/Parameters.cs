@@ -27,5 +27,10 @@ namespace Spellsword
         public static Vector2 battleEnemyStatusOffset = new Vector2(40, 0);
 
         public static Vector2 statusEffectOffset = new Vector2(0, 20);
+
+        //Battle menu location data
+        public static Vector2 battleCommandXOffset = new Vector2(90, 0);
+        public static Vector2 battleCommandYOffset = new Vector2(0, 30);
+        public static Vector2 arrowOffset = new Vector2(-8, 0);
     }
 }

@@ -6,16 +6,19 @@ using System.Threading.Tasks;
 
 namespace Spellsword.PlayerFolder.Commands
 {
-    public class MoveUpCommand : Command
+    public class MoveUpCommand : ISpellswordCommand
     {
+        public string Name { get; private set; }
+
         private WalkingPlayer player;
 
         public MoveUpCommand(WalkingPlayer player)
         {
+            this.Name = "Move Up";
             this.player = player;
         }
 
-        public override void Execute()
+        public void Execute()
         {
             player.MoveUp();
         }

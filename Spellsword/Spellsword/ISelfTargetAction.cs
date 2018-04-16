@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 
 namespace Spellsword
 {
-    public interface IAction
+    public interface ISelfTargetAction : IAction
     {
-        string Name { get; }
-        Character User { get; }
     }
 }

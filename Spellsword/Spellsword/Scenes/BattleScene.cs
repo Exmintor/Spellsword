@@ -9,14 +9,13 @@ using System.Threading.Tasks;
 
 namespace Spellsword.Scenes
 {
-    public enum BattleSceneState { UnResolveStatusEffects, Idle, Waiting, ResolveStatusEffects, InProgress }
+    public enum BattleSceneState { Idle, Waiting, ResolveStatusEffectsBefore, InProgress, ResolveStatusEffectsAfter }
     public class BattleScene
     {
-        public event Action BattleFinished;
-
         private SpellswordGame game;
         private BattleEntity player;
         private BattleEntity enemy;
+        private bool bothAlive;
 
         private BattleMenu currentMenu;
         private BattleSceneState currentState;
@@ -27,6 +26,7 @@ namespace Spellsword.Scenes
         {
             this.game = game;
             ChangeCombatants(game, player, enemy);
+            bothAlive = true;
 
             currentMenu = null;
             currentState = BattleSceneState.Idle;
@@ -60,12 +60,11 @@ namespace Spellsword.Scenes
 
             if(this.player.ThisEntity != null)
             {
-                this.player.ThisEntity.Died += EndCombat;
-                BattleFinished += player.RemoveAllStatusEffects;
+                this.player.ThisEntity.Died += HandleDeath;
             }
             if(this.enemy.ThisEntity != null)
             {
-                this.enemy.ThisEntity.Died += EndCombat;
+                this.enemy.ThisEntity.Died += HandleDeath;
             }
         }
 
@@ -73,13 +72,14 @@ namespace Spellsword.Scenes
         {
             switch (currentState)
             {
-                case BattleSceneState.UnResolveStatusEffects:
-                    enemy.ThisEntity.UnResolveStatusEffects();
-                    player.ThisEntity.UnResolveStatusEffects();
-                    this.currentState = BattleSceneState.Idle;
-                    break;
                 case BattleSceneState.Idle:
                     TakeTurn();
+                    break;
+                case BattleSceneState.ResolveStatusEffectsBefore:
+                    enemy.ThisEntity.ResolveStatusEffectsBefore();
+                    player.ThisEntity.ResolveStatusEffectsBefore();
+                    CheckForDeath();
+                    this.currentState = BattleSceneState.Waiting;
                     break;
                 case BattleSceneState.Waiting:
                     player.Update();
@@ -89,13 +89,15 @@ namespace Spellsword.Scenes
                         currentMenu.Update();
                     }
                     break;
-                case BattleSceneState.ResolveStatusEffects:
-                    enemy.ThisEntity.ResolveStatusEffects();
-                    player.ThisEntity.ResolveStatusEffects();
-                    this.currentState = BattleSceneState.InProgress;
-                    break;
                 case BattleSceneState.InProgress:
                     ResolveTurn();
+                    CheckForDeath();
+                    break;
+                case BattleSceneState.ResolveStatusEffectsAfter:
+                    enemy.ThisEntity.ResolveStatusEffectsAfter();
+                    player.ThisEntity.ResolveStatusEffectsAfter();
+                    CheckForDeath();
+                    this.currentState = BattleSceneState.Idle;
                     break;
             }
         }
@@ -134,7 +136,7 @@ namespace Spellsword.Scenes
             }
             else
             {
-                currentState = BattleSceneState.UnResolveStatusEffects;
+                currentState = BattleSceneState.ResolveStatusEffectsAfter;
             }
         }
 
@@ -142,7 +144,7 @@ namespace Spellsword.Scenes
         {
             player.TakeTurn();
             enemy.TakeTurn();
-            currentState = BattleSceneState.Waiting;
+            currentState = BattleSceneState.ResolveStatusEffectsBefore;
         }
 
         public BattleEntity GetOpponent(BattleEntity entityAsking)
@@ -165,7 +167,7 @@ namespace Spellsword.Scenes
 
         private void OnPlayerFinishedTurn()
         {
-            currentState = BattleSceneState.ResolveStatusEffects;
+            currentState = BattleSceneState.InProgress;
         }
 
         public void SetBattleMenu(BattleMenu menu)
@@ -173,16 +175,25 @@ namespace Spellsword.Scenes
             this.currentMenu = menu;
         }
 
-        private void EndCombat(Entity entityThatDied)
+        private void HandleDeath(Entity entityThatDied)
         {
-            if(entityThatDied is Enemy)
+            if (entityThatDied is Enemy)
             {
                 ((Player)player.ThisEntity).GainTalentPoints(((Enemy)entityThatDied).PointsOnDefeat);
             }
-            if (BattleFinished != null)
+            bothAlive = false;
+        }
+
+        private void CheckForDeath()
+        {
+            if(bothAlive == false)
             {
-                BattleFinished.Invoke();
+                player.ThisEntity.RemoveAllStatusEffects();
+                EndCombat();
             }
+        }
+        private void EndCombat()
+        {
             game.SwitchToWorld();
         }
     }

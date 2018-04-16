@@ -10,6 +10,7 @@ namespace Spellsword
     {
         public BasicFireball(Character attacker)
         {
+            this.Name = "Fireball";
             this.User = attacker;
             this.Damage = 15 + User.Magic;
         }

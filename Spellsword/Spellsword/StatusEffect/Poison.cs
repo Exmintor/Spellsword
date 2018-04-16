@@ -27,18 +27,26 @@ namespace Spellsword
             this.Priority = 2;
         }
 
-        public void Tick(Character thisEntity)
+        public void BeforeTick(Character attachedEntity)
         {
-            thisEntity.TakeDamage(damagePerTurn);
+            //Do nothing
+        }
+        public void AfterTick(Character attachedEntity)
+        {
+            attachedEntity.TakeDamage(damagePerTurn);
             Duration--;
+            if(Duration <= 0)
+            {
+                attachedEntity.RemoveStatusEffect(this);
+            }
         }
 
-        public void Apply(Character thisEntity)
+        public void Apply(Character attachedEntity)
         {
             //Do Nothing
         }
 
-        public void Remove(Character thisEntity)
+        public void Remove(Character attachedEntity)
         {
             //Do nothing
         }

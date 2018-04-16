@@ -15,11 +15,14 @@ namespace Spellsword
         public int Magic { get; protected set; }
         public int Defense { get; set; } // Abstract property, add setter
 
+        public List<Attack> SpellList { get; private set; }
+
         public List<IStatusEffect> StatusEffects { get; private set; }
         private List<IStatusEffect> effectsToRemove;
 
         public Character()
         {
+            SpellList = new List<Attack>();
             StatusEffects = new List<IStatusEffect>();
             effectsToRemove = new List<IStatusEffect>();
         }
@@ -44,42 +47,50 @@ namespace Spellsword
         {
             Magic += amount;
         }
+
         public virtual void AddStatusEffect(IStatusEffect effect)
         {
             StatusEffects.Add(effect);
             effect.Apply(this);
         }
-        protected virtual void RemoveStatusEffect(IStatusEffect effect)
+        public virtual void RemoveStatusEffect(IStatusEffect effect)
         {
-            StatusEffects.Remove(effect);
+            effectsToRemove.Add(effect);
             effect.Remove(this);
         }
         public virtual void RemoveAllStatusEffects()
         {
             foreach (IStatusEffect effect in StatusEffects)
             {
-                effectsToRemove.Add(effect);
+                RemoveStatusEffect(effect);
             }
-            UnResolveStatusEffects();
+            PermanentlyRemoveStatusEffects();
         }
-        public virtual void ResolveStatusEffects()
+        public virtual void ResolveStatusEffectsBefore()
         {
             StatusEffects = StatusEffects.OrderByDescending(e => e.Priority).ToList();
             foreach (IStatusEffect effect in StatusEffects)
             {
-                effect.Tick(this);
-                if (effect.Duration <= 0)
-                {
-                    effectsToRemove.Add(effect);
-                }
+                effect.BeforeTick(this);
             }
+            PermanentlyRemoveStatusEffects();
         }
-        public virtual void UnResolveStatusEffects()
+        public virtual void ResolveStatusEffectsAfter()
+        {
+            StatusEffects = StatusEffects.OrderByDescending(e => e.Priority).ToList();
+            foreach (IStatusEffect effect in StatusEffects)
+            {
+                effect.AfterTick(this);
+            }
+            PermanentlyRemoveStatusEffects();
+        }
+
+        private void PermanentlyRemoveStatusEffects()
         {
             effectsToRemove = effectsToRemove.OrderByDescending(e => e.Priority).ToList();
             foreach (IStatusEffect effect in effectsToRemove)
             {
-                RemoveStatusEffect(effect);
+                StatusEffects.Remove(effect);
             }
             effectsToRemove.Clear();
         }
