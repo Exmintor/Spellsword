@@ -10,14 +10,13 @@ using System.Threading.Tasks;
 namespace Spellsword.Scenes
 {
     public enum BattleSceneState { Idle, Waiting, ResolveStatusEffectsBefore, InProgress, ResolveStatusEffectsAfter }
-    public class BattleScene
+    public class BattleScene : MenuScene
     {
         private SpellswordGame game;
         private BattleEntity player;
         private BattleEntity enemy;
         private bool bothAlive;
 
-        private BattleMenu currentMenu;
         private BattleSceneState currentState;
 
         private Queue<BattleAction> battleQueue;

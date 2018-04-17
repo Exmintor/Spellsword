@@ -8,23 +8,13 @@ using System.Threading.Tasks;
 
 namespace Spellsword
 {
-    public class BattleController
+    public class BattleController : MenuController
     {
-        private InputHandler inputHandler;
-        public int CurrentIndex { get; private set; }
-
-        public BattleController(Game game)
+        public BattleController(Game game) : base(game)
         {
-            CurrentIndex = 0;
-            inputHandler = game.Services.GetService<InputHandler>();
-            if (inputHandler == null)
-            {
-                inputHandler = new InputHandler(game);
-                game.Components.Add(inputHandler);
-            }
         }
 
-        public void Update(BattleMenu menu)
+        public override void Update(Menu menu)
         {
             if(inputHandler.WasButtonPressed(Keys.D) && menu.IsOnCommandList(CurrentIndex + 1) && CurrentIndex % 2 == 0)
             {
@@ -46,11 +36,6 @@ namespace Spellsword
             {
                 menu.ExecuteCommand(CurrentIndex);
             }
-        }
-
-        public void ResetIndex()
-        {
-            CurrentIndex = 0;
         }
     }
 }

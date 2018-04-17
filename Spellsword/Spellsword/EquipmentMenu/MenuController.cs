@@ -10,12 +10,12 @@ namespace Spellsword
 {
     public class MenuController
     {
-        private InputHandler inputHandler;
-
-        private int whichHand = 1;
+        protected InputHandler inputHandler;
+        public int CurrentIndex { get; protected set; }
 
         public MenuController(Game game)
         {
+            CurrentIndex = 0;
             inputHandler = game.Services.GetService<InputHandler>();
             if (inputHandler == null)
             {
@@ -24,51 +24,25 @@ namespace Spellsword
             }
         }
 
-        public void Update(EquipmentMenu menu)
+        public virtual void Update(Menu menu)
         {
-            if(inputHandler.WasButtonPressed(Keys.D1))
+            if (inputHandler.WasButtonPressed(Keys.W) && menu.IsOnCommandList(CurrentIndex - 1))
             {
-                whichHand = 1;
+                CurrentIndex -= 1;
             }
-            if(inputHandler.WasButtonPressed(Keys.D2))
+            if (inputHandler.WasButtonPressed(Keys.S) && menu.IsOnCommandList(CurrentIndex + 1))
             {
-                whichHand = 2;
+                CurrentIndex += 1;
             }
-            if(inputHandler.WasButtonPressed(Keys.D3))
+            if (inputHandler.WasButtonPressed(Keys.Space))
             {
-                if(menu.NumberOfWeapons >= 1)
-                {
-                    menu.ChangeEquipment(whichHand, 0);
-                }
+                menu.ExecuteCommand(CurrentIndex);
             }
-            if (inputHandler.WasButtonPressed(Keys.D4))
-            {
-                if (menu.NumberOfWeapons >= 2)
-                {
-                    menu.ChangeEquipment(whichHand, 1);
-                }
-            }
-            if (inputHandler.WasButtonPressed(Keys.D5))
-            {
-                if (menu.NumberOfWeapons >= 3)
-                {
-                    menu.ChangeEquipment(whichHand, 2);
-                }
-            }
-            if (inputHandler.WasButtonPressed(Keys.D6))
-            {
-                if (menu.NumberOfWeapons >= 4)
-                {
-                    menu.ChangeEquipment(whichHand, 3);
-                }
-            }
-            if (inputHandler.WasButtonPressed(Keys.D7))
-            {
-                if (menu.NumberOfWeapons >= 5)
-                {
-                    menu.ChangeEquipment(whichHand, 4);
-                }
-            }
+        }
+
+        public void ResetIndex()
+        {
+            CurrentIndex = 0;
         }
     }
 }

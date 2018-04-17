@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Spellsword
 {
-    public class TalentScene
+    public class TalentScene : MenuScene
     {
         private InputHandler inputHandler;
 

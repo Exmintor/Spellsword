@@ -12,19 +12,12 @@ namespace Spellsword
     {
         public event Action<IAction> ActionChosen;
 
-        private BattleController controller;
         private Character player;
         private IWeapon currentWeapon;
-
-        private List<ISpellswordCommand> currentCommands;
-        private int currentTopCommand;
 
         public BattleMenu(Game game, Character player, IWeapon weapon) : base(game)
         {
             controller = new BattleController(game);
-            currentCommands = new List<ISpellswordCommand>();
-
-            currentTopCommand = 0;
 
             CurrentSprite = game.Content.Load<Texture2D>("BattleMenu");
             AnchorBottomLeft(game);
@@ -34,18 +27,12 @@ namespace Spellsword
             LoadBasicCommands();
         }
 
-        public void Update()
-        {
-            controller.Update(this);
-        }
-
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
-            DrawActions(spriteBatch);
         }
 
-        private void DrawActions(SpriteBatch spriteBatch)
+        protected override void DrawCommands(SpriteBatch spriteBatch)
         {
             SwitchCommandsIfNeeded();
             Vector2 startingLocation = this.Location + new Vector2(10, 10);
@@ -68,11 +55,6 @@ namespace Spellsword
                 DrawCommand(currentCommands[i].Name, currentLocation, spriteBatch);
             }
             spriteBatch.DrawString(font, "Attacking with " + currentWeapon.Name, startingLocation + new Vector2(10, -40), Color.White);
-        }
-
-        private void DrawCommand(string commandName, Vector2 commandLocation, SpriteBatch spriteBatch)
-        {
-            spriteBatch.DrawString(font, commandName, commandLocation, Color.White);
         }
 
         private void LoadBasicCommands()
@@ -153,22 +135,6 @@ namespace Spellsword
             else if(controller.CurrentIndex <= currentTopCommand - 1)
             {
                 currentTopCommand -= 4;
-            }
-        }
-        public bool IsOnCommandList(int index)
-        {
-            if(index <= currentCommands.Count - 1 && index >= 0)
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public void ExecuteCommand(int index)
-        {
-            if(IsOnCommandList(index))
-            {
-                currentCommands[index].Execute();
             }
         }
     }

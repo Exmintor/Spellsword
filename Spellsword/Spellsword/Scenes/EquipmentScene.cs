@@ -9,12 +9,11 @@ using System.Threading.Tasks;
 
 namespace Spellsword
 {
-    public class EquipmentScene
+    public class EquipmentScene : MenuScene
     {
         private InputHandler inputHandler;
 
         private SpellswordGame game;
-        private EquipmentMenu menu;
 
         public EquipmentScene(SpellswordGame game, Player player)
         {
@@ -26,7 +25,7 @@ namespace Spellsword
             }
 
             this.game = game;
-            menu = new EquipmentMenu(game, player);
+            currentMenu = new EquipmentMenu(game, player);
         }
 
         public void Update(GameTime gameTime)
@@ -35,12 +34,12 @@ namespace Spellsword
             {
                 game.SwitchToWorld();
             }
-            menu.Update();
+            currentMenu.Update();
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            menu.Draw(spriteBatch);
+            currentMenu.Draw(spriteBatch);
         }
     }
 }

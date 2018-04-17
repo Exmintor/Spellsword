@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 
 namespace Spellsword
 {
-    public interface ISpellswordCommand
+    public abstract class Scene
     {
-        string Name { get; }
-        void Execute();
     }
 }
