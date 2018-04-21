@@ -67,7 +67,7 @@ namespace Spellsword.Scenes
             }
         }
 
-        public void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             switch (currentState)
             {
@@ -101,7 +101,7 @@ namespace Spellsword.Scenes
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             player.Draw(spriteBatch);
             Vector2 playerHealthLocation = player.Location + Parameters.battlePlayerHealthOffset;

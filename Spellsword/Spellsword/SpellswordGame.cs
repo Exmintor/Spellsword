@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Spellsword.Scenes;
+using System.Collections.Generic;
 
 namespace Spellsword
 {
@@ -149,18 +150,26 @@ namespace Spellsword
             MediaPlayer.Pause();
         }
 
-        public void OpenEquipmentMenu(Player player)
+        public void OpenMenu(Player player)
         {
-            EquipmentMenu menu = new EquipmentMenu(this, menuScene, player);
+            MainMenu menu = new MainMenu(this, menuScene);
+            menu.AddCommands(GetMenuCommands(menuScene, menu, player));
             menuScene = new MenuScene(this, menu);
             this.CurrentState = GameState.MainMenu;
         }
 
-        public void OpenTalentMenu(Player player)
+        private List<ISpellswordCommand> GetMenuCommands(MenuScene scene, Menu mainMenu, Player player)
         {
-            TalentMenu menu = new TalentMenu(this, menuScene, player);
-            menuScene = new MenuScene(this, menu);
-            this.CurrentState = GameState.MainMenu;
+            List<ISpellswordCommand> menuCommands = new List<ISpellswordCommand>();
+            EquipmentMenu equipmentMenu = new EquipmentMenu(this, scene, player);
+            SwitchMenuCommand equipmentMenuCommand = new SwitchMenuCommand("Equipment", scene, mainMenu, equipmentMenu);
+            menuCommands.Add(equipmentMenuCommand);
+
+            TalentMenu talentMenu = new TalentMenu(this, scene, player);
+            SwitchMenuCommand talentMenuCommand = new SwitchMenuCommand("Talents", scene, mainMenu, talentMenu);
+            menuCommands.Add(talentMenuCommand);
+
+            return menuCommands;
         }
 
         private void SwitchSong()

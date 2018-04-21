@@ -50,6 +50,7 @@
     <Compile Include="Actions\ISelfTargetAction.cs" />
     <Compile Include="Commands\ISpellswordCommand.cs" />
     <Compile Include="Battle\BattleCommands\NewSpellCommand.cs" />
+    <Compile Include="MainMenu.cs" />
     <Compile Include="MenuScene.cs" />
     <Compile Include="Scenes\Scene.cs" />
     <Compile Include="StatusEffect\Defend.cs" />
@@ -74,7 +75,6 @@
     <Compile Include="IInteractable.cs" />
     <Compile Include="Talents\StrengthTalent.cs" />
     <Compile Include="Talents\Talent.cs" />
-    <Compile Include="TalentMenu\TalentController.cs" />
     <Compile Include="TalentMenu\TalentMenu.cs" />
     <Compile Include="Utility\InputHandler.cs" />
     <Compile Include="StatusEffect\IStatusEffect.cs" />
@@ -138,9 +138,7 @@
   <ItemGroup>
     <None Include="Content\Arial.spritefont" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="EquipmentMenu\MainMenuCommands\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -80,6 +80,10 @@ namespace Spellsword
         {
             currentCommands.Add(command);
         }
+        public void AddCommands(List<ISpellswordCommand> commands)
+        {
+            currentCommands.AddRange(commands);
+        }
         public void RemoveCommand(ISpellswordCommand command)
         {
             currentCommands.Remove(command);
