@@ -7,7 +7,7 @@ using Spellsword.Scenes;
 
 namespace Spellsword
 {
-    public enum GameState { World, Paused, Battle, EquipmentMenu, TalentTree }
+    public enum GameState { World, Paused, Battle, MainMenu }
     public class SpellswordGame : Game
     {
         private Song currentSong;
@@ -33,8 +33,7 @@ namespace Spellsword
 
         private WalkingScene walkingScene;
         private BattleScene battleScene;
-        private EquipmentScene equipmentScene;
-        private TalentScene talentScene;
+        private MenuScene menuScene;
 
         public SpellswordGame()
         {
@@ -63,8 +62,7 @@ namespace Spellsword
             WalkingPlayer player = new WalkingPlayer(this, gameWorld);
             walkingScene = new WalkingScene(this, gameWorld, player);
             battleScene = null;
-            equipmentScene = null;
-            talentScene = null;
+            menuScene = null;
         }
 
         protected override void LoadContent()
@@ -92,11 +90,8 @@ namespace Spellsword
                 case GameState.Battle:
                     battleScene.Update(gameTime);
                     break;
-                case GameState.EquipmentMenu:
-                    equipmentScene.Update(gameTime);
-                    break;
-                case GameState.TalentTree:
-                    talentScene.Update(gameTime);
+                case GameState.MainMenu:
+                    menuScene.Update(gameTime);
                     break;
             }
             base.Update(gameTime);
@@ -119,13 +114,9 @@ namespace Spellsword
                     GraphicsDevice.Clear(Color.Red);
                     battleScene.Draw(spriteBatch);
                     break;
-                case GameState.EquipmentMenu:
+                case GameState.MainMenu:
                     walkingScene.Draw(spriteBatch);
-                    equipmentScene.Draw(spriteBatch);
-                    break;
-                case GameState.TalentTree:
-                    walkingScene.Draw(spriteBatch);
-                    talentScene.Draw(spriteBatch);
+                    menuScene.Draw(spriteBatch);
                     break;
             }
             spriteBatch.End();
@@ -160,14 +151,16 @@ namespace Spellsword
 
         public void OpenEquipmentMenu(Player player)
         {
-            equipmentScene = new EquipmentScene(this, player);
-            this.CurrentState = GameState.EquipmentMenu;
+            EquipmentMenu menu = new EquipmentMenu(this, menuScene, player);
+            menuScene = new MenuScene(this, menu);
+            this.CurrentState = GameState.MainMenu;
         }
 
         public void OpenTalentMenu(Player player)
         {
-            talentScene = new TalentScene(this, player);
-            this.CurrentState = GameState.TalentTree;
+            TalentMenu menu = new TalentMenu(this, menuScene, player);
+            menuScene = new MenuScene(this, menu);
+            this.CurrentState = GameState.MainMenu;
         }
 
         private void SwitchSong()

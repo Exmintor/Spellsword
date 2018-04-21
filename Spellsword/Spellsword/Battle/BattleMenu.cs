@@ -15,7 +15,12 @@ namespace Spellsword
         private Character player;
         private IWeapon currentWeapon;
 
-        public BattleMenu(Game game, Character player, IWeapon weapon) : base(game)
+        public BattleMenu(Game game, MenuScene scene, Character player, IWeapon weapon) : this(game, scene, player, weapon, new List<ISpellswordCommand>())
+        {
+            LoadBasicCommands();
+        }
+
+        public BattleMenu(Game game, MenuScene scene, Character player, IWeapon weapon, List<ISpellswordCommand> commands) : base(game, scene, commands)
         {
             controller = new BattleController(game);
 
@@ -24,7 +29,6 @@ namespace Spellsword
 
             this.player = player;
             this.currentWeapon = weapon;
-            LoadBasicCommands();
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -64,7 +68,9 @@ namespace Spellsword
             currentCommands.Add(new DefendCommand(this));
             if(currentWeapon.IsFocus)
             {
-                currentCommands.Add(new SpellSelectionCommand(this));
+                BattleMenu spellMenu = GenerateSpellMenu();
+                SwitchMenuCommand switchToSpells = new SwitchMenuCommand("Spells", thisScene, this, spellMenu);
+                currentCommands.Add(switchToSpells);
             }
 
             controller.ResetIndex();
@@ -98,32 +104,24 @@ namespace Spellsword
             throw new NotImplementedException();
         }
 
-        public void SpellSelection()
-        {
-            controller.ResetIndex();
-            List<ISpellswordCommand> newCommands = new List<ISpellswordCommand>();
-            List<Attack> spellList = player.SpellList;
-
-            newCommands.Add(new BackCommand(this));
-            foreach (Attack spell in spellList)
-            {
-                newCommands.Add(new NewSpellCommand(this, spell));
-            }
-
-            currentCommands = newCommands;
-        }
-
         public void SpellAction(Attack spell)
         {
-            if(ActionChosen != null)
+            if (ActionChosen != null)
             {
                 ActionChosen.Invoke(spell);
             }
         }
 
-        public void BackAction()
+        private BattleMenu GenerateSpellMenu()
         {
-            LoadBasicCommands();
+            List<ISpellswordCommand> newCommands = new List<ISpellswordCommand>();
+            List<Attack> spellList = player.SpellList;
+            foreach (Attack spell in spellList)
+            {
+                newCommands.Add(new NewSpellCommand(this, spell));
+            }
+            BattleMenu newMenu = new BattleMenu(thisGame, thisScene, player, currentWeapon, newCommands);
+            return newMenu;
         }
 
         private void SwitchCommandsIfNeeded()

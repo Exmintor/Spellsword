@@ -10,16 +10,25 @@ namespace Spellsword
 {
     public abstract class Menu : Sprite
     {
+        protected Game thisGame;
+        protected MenuScene thisScene;
         protected SpriteFont font;
 
         protected MenuController controller;
         protected List<ISpellswordCommand> currentCommands;
         protected int currentTopCommand;
 
-        public Menu(Game game)
+        public Menu(Game game, MenuScene scene) : this(game, scene, new List<ISpellswordCommand>())
         {
+
+        }
+
+        public Menu(Game game, MenuScene scene, List<ISpellswordCommand> commands)
+        {
+            thisGame = game;
+            this.thisScene = scene;
             controller = new MenuController(game);
-            currentCommands = new List<ISpellswordCommand>();
+            currentCommands = commands;
             currentTopCommand = 0;
 
             font = game.Content.Load<SpriteFont>("Arial");
@@ -70,6 +79,10 @@ namespace Spellsword
         public void AddCommand(ISpellswordCommand command)
         {
             currentCommands.Add(command);
+        }
+        public void RemoveCommand(ISpellswordCommand command)
+        {
+            currentCommands.Remove(command);
         }
         public void ExecuteCommand(int index)
         {

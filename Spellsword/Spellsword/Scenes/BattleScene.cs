@@ -21,7 +21,7 @@ namespace Spellsword.Scenes
 
         private Queue<BattleAction> battleQueue;
 
-        public BattleScene(SpellswordGame game, Character player, Character enemy)
+        public BattleScene(SpellswordGame game, Character player, Character enemy) : base(game, null)
         {
             this.game = game;
             ChangeCombatants(game, player, enemy);

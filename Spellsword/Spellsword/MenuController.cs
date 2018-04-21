@@ -37,6 +37,7 @@ namespace Spellsword
             if (inputHandler.WasButtonPressed(Keys.Space))
             {
                 menu.ExecuteCommand(CurrentIndex);
+                ResetIndex();
             }
         }
 

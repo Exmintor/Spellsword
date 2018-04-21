@@ -13,7 +13,7 @@ namespace Spellsword
         private Player player;
         private List<Talent> availableTalents;
 
-        public TalentMenu(Game game, Player player) : base(game)
+        public TalentMenu(Game game, MenuScene scene, Player player) : base(game, scene)
         {
             this.color = new Color(Color.Black, 0.85f);
             CurrentSprite = game.Content.Load<Texture2D>("EquipmentMenu");

@@ -14,8 +14,9 @@ namespace Spellsword
         private Menu oldMenu;
         private Menu newMenu;
 
-        public SwitchMenuCommand(MenuScene scene, Menu oldMenu, Menu newMenu)
+        public SwitchMenuCommand(string Name, MenuScene scene, Menu oldMenu, Menu newMenu)
         {
+            this.Name = Name;
             this.scene = scene;
             this.oldMenu = oldMenu;
             this.newMenu = newMenu;
@@ -24,8 +25,7 @@ namespace Spellsword
         public void Execute()
         {
             scene.SwitchOutMenu(oldMenu, newMenu);
-            SwitchMenuCommand command = new SwitchMenuCommand(scene, newMenu, oldMenu);
-            command.Name = "Back";
+            BackCommand command = new BackCommand(scene, newMenu, oldMenu);
             newMenu.AddCommand(command);
         }
     }
