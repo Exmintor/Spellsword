@@ -9,6 +9,7 @@ namespace Spellsword
     public interface ISpellswordCommand
     {
         string Name { get; }
+        string Description { get; }
         void Execute();
     }
 }

@@ -9,6 +9,7 @@ namespace Spellsword
     public class NewSpellCommand : ISpellswordCommand
     {
         public string Name { get; private set; }
+        public string Description { get; private set; }
 
         private BattleMenu menu;
         private Attack spell;
@@ -16,6 +17,7 @@ namespace Spellsword
         public NewSpellCommand(BattleMenu menu, Attack spell)
         {
             this.Name = spell.Name;
+            this.Description = "Attack with " + spell.Name;
             this.menu = menu;
             this.spell = spell;
         }

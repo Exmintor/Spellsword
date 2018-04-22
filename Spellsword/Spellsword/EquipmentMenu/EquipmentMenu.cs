@@ -19,6 +19,8 @@ namespace Spellsword
         }
         private Player player;
 
+        private TextMenu textMenu;
+
         public EquipmentMenu(SpellswordGame game, Player player) : base(game)
         {
             this.color = new Color(Color.Black, 0.85f);
@@ -26,7 +28,8 @@ namespace Spellsword
             this.AnchorTopLeft(game);
 
             this.player = player;
-            //LoadMenuCommands();
+
+            textMenu = new TextMenu(game, "");
         }
 
         public override void Update()
@@ -37,15 +40,15 @@ namespace Spellsword
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
-            //DrawCurrentWeapons(spriteBatch);
-            //DrawInventory(spriteBatch);
+            textMenu.SwitchOutString(currentCommands[controller.CurrentIndex].Description);
+            textMenu.Draw(spriteBatch);
         }
 
-        public void ChangeEquipment(int whichHand, int whichWeapon)
-        {
-            IWeapon weapon = player.Inventory.GetWeapon(whichWeapon);
-            player.ChangeEquipment(whichHand, weapon);
-        }
+        //public void ChangeEquipment(int whichHand, int whichWeapon)
+        //{
+        //    IWeapon weapon = player.Inventory.GetWeapon(whichWeapon);
+        //    player.ChangeEquipment(whichHand, weapon);
+        //}
 
         //private void DrawCurrentWeapons(SpriteBatch spriteBatch)
         //{

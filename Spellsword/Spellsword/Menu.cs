@@ -29,6 +29,7 @@ namespace Spellsword
             currentCommands = commands;
             currentTopCommand = 0;
 
+            this.color = new Color(Color.Black, 0.85f);
             font = game.Content.Load<SpriteFont>("Arial");
             CurrentSprite = game.Content.Load<Texture2D>("Menu");
             AnchorTopLeft(game);
@@ -44,19 +45,29 @@ namespace Spellsword
             DrawCommands(spriteBatch);
         }
 
+        public virtual void DrawWithOffset(SpriteBatch spriteBatch, Vector2 offset)
+        {
+            base.Draw(spriteBatch);
+            DrawCommands(spriteBatch, offset);
+        }
+
         protected virtual void DrawCommands(SpriteBatch spriteBatch)
         {
-            Vector2 startingLocation = this.Location + new Vector2(20, -15);
+            DrawCommands(spriteBatch, this.Location + new Vector2(20, 10));
+        }
+
+        protected virtual void DrawCommands(SpriteBatch spriteBatch, Vector2 offset)
+        {
+            Vector2 startingLocation = offset;
             Vector2 currentLocation = startingLocation;
             for (int i = currentTopCommand; i < Math.Min(currentCommands.Count, 10); i++)
             {
-                currentLocation += Parameters.battleCommandYOffset;
-
                 if (i == controller.CurrentIndex)
                 {
                     spriteBatch.DrawString(font, "> ", currentLocation + Parameters.arrowOffset, Color.White);
                 }
                 DrawCommand(currentCommands[i].Name, currentLocation, spriteBatch);
+                currentLocation += Parameters.battleCommandYOffset;
             }
         }
 

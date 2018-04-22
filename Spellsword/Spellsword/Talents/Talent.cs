@@ -9,6 +9,7 @@ namespace Spellsword
     public abstract class Talent
     {
         public abstract string Name { get; protected set; }
+        public abstract string Description { get; protected set; }
         public abstract int Cost { get; protected set; }
         public abstract void ApplyTalent(Character player);
     }

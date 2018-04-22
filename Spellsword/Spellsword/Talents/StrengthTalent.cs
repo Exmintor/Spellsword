@@ -10,10 +10,12 @@ namespace Spellsword
     {
         public override string Name { get; protected set; }
         public override int Cost { get; protected set; }
+        public override string Description { get; protected set; }
 
         public StrengthTalent()
         {
             Name = "Increase Strength";
+            Description = "Increases your current Strength by 1";
             Cost = 1;
         }
         public override void ApplyTalent(Character player)

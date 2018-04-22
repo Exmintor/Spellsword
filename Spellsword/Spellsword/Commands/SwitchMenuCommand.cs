@@ -10,6 +10,7 @@ namespace Spellsword
     public class SwitchMenuCommand : ISpellswordCommand
     {
         public string Name { get; private set; }
+        public string Description { get; private set; }
 
         private SpellswordGame game;
         private Menu oldMenu;
@@ -18,6 +19,7 @@ namespace Spellsword
         public SwitchMenuCommand(string Name, SpellswordGame game, Menu oldMenu, Menu newMenu)
         {
             this.Name = Name;
+            this.Description = "Go to " + newMenu.ToString();
             this.game = game;
             this.oldMenu = oldMenu;
             this.newMenu = newMenu;

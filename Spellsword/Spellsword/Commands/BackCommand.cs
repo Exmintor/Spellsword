@@ -9,6 +9,7 @@ namespace Spellsword
     public class BackCommand : ISpellswordCommand
     {
         public string Name { get; private set; }
+        public string Description { get; private set; }
 
         private SpellswordGame game;
         private Menu newMenu;
@@ -17,6 +18,7 @@ namespace Spellsword
         public BackCommand(SpellswordGame game, Menu newMenu, Menu oldMenu)
         {
             this.Name = "Back";
+            this.Description = "Go Back";
             this.game = game;
             this.newMenu = newMenu;
             this.oldMenu = oldMenu;

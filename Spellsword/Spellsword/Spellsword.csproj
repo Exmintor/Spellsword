@@ -38,6 +38,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AddTalentCommand.cs" />
     <Compile Include="Animation\Animation.cs" />
     <Compile Include="Animation\AnimationFrame.cs" />
     <Compile Include="Animation\Animator.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="Talents\StrengthTalent.cs" />
     <Compile Include="Talents\Talent.cs" />
     <Compile Include="TalentMenu\TalentMenu.cs" />
+    <Compile Include="TextMenu.cs" />
     <Compile Include="Utility\InputHandler.cs" />
     <Compile Include="StatusEffect\IStatusEffect.cs" />
     <Compile Include="Items\IWeapon.cs" />

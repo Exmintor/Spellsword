@@ -36,8 +36,8 @@ namespace Spellsword
             }
             if (inputHandler.WasButtonPressed(Keys.Space))
             {
-                ResetIndex();
                 menu.ExecuteCommand(CurrentIndex);
+                ResetIndex();
             }
         }
 

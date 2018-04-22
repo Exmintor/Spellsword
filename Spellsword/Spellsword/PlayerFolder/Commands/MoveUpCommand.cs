@@ -9,12 +9,14 @@ namespace Spellsword.PlayerFolder.Commands
     public class MoveUpCommand : ISpellswordCommand
     {
         public string Name { get; private set; }
+        public string Description { get; private set; }
 
         private WalkingPlayer player;
 
         public MoveUpCommand(WalkingPlayer player)
         {
             this.Name = "Move Up";
+            this.Description = "Move the player up";
             this.player = player;
         }
 
