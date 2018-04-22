@@ -9,14 +9,13 @@ namespace Spellsword
 {
     public class MainMenu : Menu
     {
-        public MainMenu(Game game, MenuScene scene) : this(game, scene, new List<ISpellswordCommand>())
+        public MainMenu(SpellswordGame game, MenuScene scene) : this(game, new List<ISpellswordCommand>())
         {
 
         }
-        public MainMenu(Game game, MenuScene scene, List<ISpellswordCommand> commands) : base(game, scene, commands)
+        public MainMenu(SpellswordGame game, List<ISpellswordCommand> commands) : base(game, commands)
         {
             thisGame = game;
-            thisScene = scene;
         }
     }
 }

@@ -33,7 +33,7 @@ namespace Spellsword.Scenes
             battleQueue = new Queue<BattleAction>();
         }
 
-        public void ChangeCombatants(Game game, Character player, Character enemy)
+        public void ChangeCombatants(SpellswordGame game, Character player, Character enemy)
         {
             if (player is Player)
             {

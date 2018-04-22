@@ -158,15 +158,27 @@ namespace Spellsword
             this.CurrentState = GameState.MainMenu;
         }
 
+        public void SwitchOutMenu(Menu newMenu)
+        {
+            if(newMenu is BattleMenu)
+            {
+                battleScene.SetBattleMenu((BattleMenu)newMenu);
+            }
+            else
+            {
+                menuScene = new MenuScene(this, newMenu);
+            }
+        }
+
         private List<ISpellswordCommand> GetMenuCommands(MenuScene scene, Menu mainMenu, Player player)
         {
             List<ISpellswordCommand> menuCommands = new List<ISpellswordCommand>();
-            EquipmentMenu equipmentMenu = new EquipmentMenu(this, scene, player);
-            SwitchMenuCommand equipmentMenuCommand = new SwitchMenuCommand("Equipment", scene, mainMenu, equipmentMenu);
+            EquipmentMenu equipmentMenu = new EquipmentMenu(this, player);
+            SwitchMenuCommand equipmentMenuCommand = new SwitchMenuCommand("Equipment", this, mainMenu, equipmentMenu);
             menuCommands.Add(equipmentMenuCommand);
 
-            TalentMenu talentMenu = new TalentMenu(this, scene, player);
-            SwitchMenuCommand talentMenuCommand = new SwitchMenuCommand("Talents", scene, mainMenu, talentMenu);
+            TalentMenu talentMenu = new TalentMenu(this, player);
+            SwitchMenuCommand talentMenuCommand = new SwitchMenuCommand("Talents", this, mainMenu, talentMenu);
             menuCommands.Add(talentMenuCommand);
 
             return menuCommands;

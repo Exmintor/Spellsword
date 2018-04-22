@@ -10,23 +10,21 @@ namespace Spellsword
 {
     public abstract class Menu : Sprite
     {
-        protected Game thisGame;
-        protected MenuScene thisScene;
+        protected SpellswordGame thisGame;
         protected SpriteFont font;
 
         protected MenuController controller;
         protected List<ISpellswordCommand> currentCommands;
         protected int currentTopCommand;
 
-        public Menu(Game game, MenuScene scene) : this(game, scene, new List<ISpellswordCommand>())
+        public Menu(SpellswordGame game) : this(game, new List<ISpellswordCommand>())
         {
 
         }
 
-        public Menu(Game game, MenuScene scene, List<ISpellswordCommand> commands)
+        public Menu(SpellswordGame game, List<ISpellswordCommand> commands)
         {
             thisGame = game;
-            this.thisScene = scene;
             controller = new MenuController(game);
             currentCommands = commands;
             currentTopCommand = 0;
@@ -48,11 +46,11 @@ namespace Spellsword
 
         protected virtual void DrawCommands(SpriteBatch spriteBatch)
         {
-            Vector2 startingLocation = this.Location + new Vector2(10, 10);
+            Vector2 startingLocation = this.Location + new Vector2(20, -15);
             Vector2 currentLocation = startingLocation;
             for (int i = currentTopCommand; i < Math.Min(currentCommands.Count, 10); i++)
             {
-                currentLocation += Parameters.battleCommandXOffset;
+                currentLocation += Parameters.battleCommandYOffset;
 
                 if (i == controller.CurrentIndex)
                 {

@@ -10,21 +10,21 @@ namespace Spellsword
     {
         public string Name { get; private set; }
 
-        private MenuScene scene;
+        private SpellswordGame game;
         private Menu newMenu;
         private Menu oldMenu;
 
-        public BackCommand(MenuScene scene, Menu newMenu, Menu oldMenu)
+        public BackCommand(SpellswordGame game, Menu newMenu, Menu oldMenu)
         {
             this.Name = "Back";
-            this.scene = scene;
+            this.game = game;
             this.newMenu = newMenu;
             this.oldMenu = oldMenu;
         }
         public void Execute()
         {
             newMenu.RemoveCommand(this);
-            scene.SwitchOutMenu(newMenu, oldMenu);
+            game.SwitchOutMenu(oldMenu);
         }
     }
 }

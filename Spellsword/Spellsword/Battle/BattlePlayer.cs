@@ -12,7 +12,7 @@ namespace Spellsword
     public enum BattlePlayerState { Waiting, FirstAction, SecondAction }
     public class BattlePlayer : BattleEntity
     {
-        private Game game;
+        private SpellswordGame game;
         public event Action FinishedTurn;
 
         private BattlePlayerState currentState;
@@ -26,13 +26,13 @@ namespace Spellsword
             {
                 if(value == BattlePlayerState.FirstAction)
                 {
-                    menu = new BattleMenu(game, currentScene, ThisEntity, ((Player)ThisEntity).FirstWeapon);
+                    menu = new BattleMenu(game, ThisEntity, ((Player)ThisEntity).FirstWeapon);
                     menu.ActionChosen += OnActionChosen;
                 }
                 else if(value == BattlePlayerState.SecondAction)
                 {
                     menu.ActionChosen -= OnActionChosen;
-                    menu = new BattleMenu(game, currentScene, ThisEntity, ((Player)ThisEntity).SecondWeapon);
+                    menu = new BattleMenu(game, ThisEntity, ((Player)ThisEntity).SecondWeapon);
                     menu.ActionChosen += OnActionChosen;
                 }
                 else
@@ -50,7 +50,7 @@ namespace Spellsword
         private bool hasFinishedAction = false;
         private BattleMenu menu;
 
-        public BattlePlayer(Game game, BattleScene currentScene, Player player)
+        public BattlePlayer(SpellswordGame game, BattleScene currentScene, Player player)
         {
             this.CurrentSprite = game.Content.Load<Texture2D>("SpellSword");
             this.Location = Parameters.battlePlayerLocation;

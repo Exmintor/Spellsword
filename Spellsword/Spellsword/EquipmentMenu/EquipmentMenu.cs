@@ -19,7 +19,7 @@ namespace Spellsword
         }
         private Player player;
 
-        public EquipmentMenu(Game game, MenuScene scene, Player player) : base(game, scene)
+        public EquipmentMenu(SpellswordGame game, Player player) : base(game)
         {
             this.color = new Color(Color.Black, 0.85f);
             CurrentSprite = game.Content.Load<Texture2D>("Menu");

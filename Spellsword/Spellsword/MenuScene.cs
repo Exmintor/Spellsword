@@ -43,10 +43,5 @@ namespace Spellsword
         {
             currentMenu.Draw(spriteBatch);
         }
-
-        public void SwitchOutMenu(Menu oldMenu, Menu newMenu)
-        {
-            currentMenu = newMenu;
-        }
     }
 }
