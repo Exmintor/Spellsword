@@ -14,6 +14,7 @@ namespace Spellsword
         public int Priority { get; private set; }
 
         public string Name { get; private set; }
+        public string Description { get; protected set; }
 
         private int damagePerTurn;
 
@@ -23,6 +24,7 @@ namespace Spellsword
             this.Name = "Poison";
             this.Duration = duration;
             this.damagePerTurn = damagePerTurn + User.Magic;
+            this.Description = "Deals " + this.damagePerTurn + " damage to target each turn for " + Duration + " turns.";
 
             this.Priority = 2;
         }

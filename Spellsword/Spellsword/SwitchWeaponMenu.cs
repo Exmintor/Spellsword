@@ -8,28 +8,21 @@ using System.Threading.Tasks;
 
 namespace Spellsword
 {
-    public class EquipmentMenu : Menu
+    public class SwitchWeaponMenu : Menu
     {
-        public int NumberOfWeapons
-        {
-            get
-            {
-                return player.Inventory.Weapons.Count;
-            }
-        }
-        private SpellswordGame game;
         private Player player;
+        private int weaponIndex;
 
         private TextMenu textMenu;
 
-        public EquipmentMenu(SpellswordGame game, Player player) : base(game)
+        public SwitchWeaponMenu(SpellswordGame game, Player player, int weaponIndex) : base(game)
         {
             this.color = new Color(Color.Black, 0.85f);
             CurrentSprite = game.Content.Load<Texture2D>("Menu");
             this.AnchorTopLeft(game);
 
-            this.game = game;
             this.player = player;
+            this.weaponIndex = weaponIndex;
 
             textMenu = new TextMenu(game, "");
             currentCommands = GenerateCommands();
@@ -37,32 +30,40 @@ namespace Spellsword
 
         public override void Update()
         {
-            controller.Update(this);
+            base.Update();
             UpdateCommands();
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.DrawWithOffset(spriteBatch, new Vector2(20, 35));
-            spriteBatch.DrawString(font, "Current Weapons: ", this.Location, Color.White);
+            spriteBatch.DrawString(font, "Inventory: ", this.Location, Color.White);
             textMenu.SwitchOutString(currentCommands[controller.CurrentIndex].Description);
             textMenu.Draw(spriteBatch);
+        }
+
+        public void SwitchWeapon(IWeapon weaponToSwitch)
+        {
+            player.ChangeEquipment(weaponIndex, weaponToSwitch);
         }
 
         private List<ISpellswordCommand> GenerateCommands()
         {
             List<ISpellswordCommand> commands = new List<ISpellswordCommand>();
-            SwitchWeaponCommand command = new SwitchWeaponCommand(game, this, player, player.FirstWeapon, 1);
-            SwitchWeaponCommand secondCommand = new SwitchWeaponCommand(game, this, player, player.SecondWeapon, 2);
-            commands.Add(command);
-            commands.Add(secondCommand);
+            foreach(IWeapon weapon in player.Inventory.Weapons)
+            {
+                SwitchOutWeaponCommand command = new SwitchOutWeaponCommand(this, weapon);
+                commands.Add(command);
+            }
             return commands;
         }
 
         private void UpdateCommands()
         {
-            currentCommands[0] = new SwitchWeaponCommand(game, this, player, player.FirstWeapon, 1);
-            currentCommands[1] = new SwitchWeaponCommand(game, this, player, player.SecondWeapon, 2);
+            for(int i = 0; i < currentCommands.Count - 1; i++)
+            {
+                currentCommands[i] = new SwitchOutWeaponCommand(this, player.Inventory.Weapons[i]);
+            }
         }
     }
 }

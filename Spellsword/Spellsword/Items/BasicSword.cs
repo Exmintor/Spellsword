@@ -14,6 +14,20 @@ namespace Spellsword
             Damage = 10;
             Defense = 10;
             Name = "Sword";
+
+            string isFocus = "";
+            if (IsFocus)
+            {
+                isFocus = "Can cast spells";
+            }
+            else
+            {
+                isFocus = "";
+            }
+            Description = Name +
+                "\n    Attack: " + Damage +
+                "\n    Defense: " + Defense +
+                "\n    " + isFocus;
         }
     }
 }

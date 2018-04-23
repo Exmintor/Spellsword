@@ -12,6 +12,7 @@ namespace Spellsword
         {
             this.User = attacker;
             this.Damage = basicSword.Damage + User.Strength;
+            this.Description = "Deals " + Damage + " damage to target.";
         }
     }
 }

@@ -185,6 +185,10 @@ namespace Spellsword
             SwitchMenuCommand statusMenuCommand = new SwitchMenuCommand("Player Status", this, mainMenu, statusMenu);
             menuCommands.Add(statusMenuCommand);
 
+            SpellMenu spellMenu = new SpellMenu(this, player);
+            SwitchMenuCommand spellMenuCommand = new SwitchMenuCommand("Current Spells", this, mainMenu, spellMenu);
+            menuCommands.Add(spellMenuCommand);
+
             return menuCommands;
         }
 

@@ -16,5 +16,6 @@ namespace Spellsword
         int Defense { get; }
 
         string Name { get; }
+        string Description { get; }
     }
 }

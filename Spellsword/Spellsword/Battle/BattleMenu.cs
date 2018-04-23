@@ -106,6 +106,7 @@ namespace Spellsword
 
         public void SpellAction(Attack spell)
         {
+            spell.UpdateDescription();
             if (ActionChosen != null)
             {
                 ActionChosen.Invoke(spell);

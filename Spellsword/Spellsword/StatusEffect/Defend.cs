@@ -11,6 +11,7 @@ namespace Spellsword
         public Character User { get; protected set; }
 
         public string Name { get; protected set; }
+        public string Description { get; protected set; }
         public int Duration { get; protected set; }
         public int Priority { get; protected set; }
 
@@ -20,6 +21,7 @@ namespace Spellsword
         {
             this.User = user;
             this.Name = "Defend";
+            this.Description = "Grants " + weapon.Defense + " for one turn.";
             this.Duration = duration;
             this.Priority = 0;
             this.thisWeapon = weapon; ;
