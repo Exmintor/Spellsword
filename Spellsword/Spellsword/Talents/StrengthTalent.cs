@@ -15,7 +15,7 @@ namespace Spellsword
         public StrengthTalent()
         {
             Name = "Increase Strength";
-            Description = "Increases your current Strength by 1";
+            Description = "Increases your current \nStrength by 1";
             Cost = 1;
         }
         public override void ApplyTalent(Character player)

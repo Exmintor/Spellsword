@@ -31,20 +31,29 @@ namespace Spellsword
             base.Draw(spriteBatch);
             Vector2 startingLocation = this.Location + new Vector2(20, 10);
             DrawText(spriteBatch, startingLocation);
+            DrawSecondCommands(spriteBatch, startingLocation);
         }
 
         protected virtual void DrawText(SpriteBatch spriteBatch, Vector2 location)
         {
-            foreach (string thing in currentText)
+            if(currentText != null)
             {
-                spriteBatch.DrawString(font, thing, location, Color.White);
-                location += Parameters.battleCommandYOffset;
+                foreach (string thing in currentText)
+                {
+                    spriteBatch.DrawString(font, thing, location, Color.White);
+                    location += Parameters.battleCommandYOffset;
+                }
             }
         }
 
         protected override void DrawCommands(SpriteBatch spriteBatch)
         {
             
+        }
+
+        protected void DrawSecondCommands(SpriteBatch spriteBatch, Vector2 location)
+        {
+            base.DrawCommands(spriteBatch, location);
         }
 
         public void SwitchOutString(List<string> replacement)
@@ -56,6 +65,11 @@ namespace Spellsword
         {
             currentText.Clear();
             currentText.Add(replacement);
+        }
+
+        public void AddString(string stringToAdd)
+        {
+            currentText.Add(stringToAdd);
         }
     }
 }

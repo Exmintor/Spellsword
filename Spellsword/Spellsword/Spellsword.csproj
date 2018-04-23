@@ -56,6 +56,7 @@
     <Compile Include="Scenes\Scene.cs" />
     <Compile Include="StatusEffect\Defend.cs" />
     <Compile Include="Commands\SwitchMenuCommand.cs" />
+    <Compile Include="StatusMenu.cs" />
     <Compile Include="Talents\MagicTalent.cs" />
     <Compile Include="EquipmentMenu\EquipmentMenu.cs" />
     <Compile Include="EquipmentMenu\Inventory.cs" />

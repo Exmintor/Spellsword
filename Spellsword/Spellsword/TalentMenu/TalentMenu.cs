@@ -32,13 +32,32 @@ namespace Spellsword
         public override void Update()
         {
             controller.Update(this);
+            if(GetTalentAtIndex(controller.CurrentIndex) != null)
+            {
+                UpdateTalentText();
+            }
+            else
+            {
+                textMenu.SwitchOutString(currentCommands[controller.CurrentIndex].Description);
+            }
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
-            textMenu.SwitchOutString(currentCommands[controller.CurrentIndex].Description);
             textMenu.Draw(spriteBatch);
+        }
+
+        private void UpdateTalentText()
+        {
+            textMenu.SwitchOutString("Talent points: " + player.TalentPoints);
+            textMenu.AddString(currentCommands[controller.CurrentIndex].Description);
+            textMenu.AddString("");
+            Talent currentTalent = GetTalentAtIndex(controller.CurrentIndex);
+            if (currentTalent != null)
+            {
+                textMenu.AddString("Cost: " + currentTalent.Cost);
+            }
         }
 
         private List<ISpellswordCommand> GenerateCommands()
@@ -50,6 +69,15 @@ namespace Spellsword
                 commands.Add(newCommand);
             }
             return commands;
+        }
+
+        private Talent GetTalentAtIndex(int index)
+        {
+            if(index < availableTalents.Count)
+            {
+                return availableTalents[index];
+            }
+            return null;
         }
     }
 }

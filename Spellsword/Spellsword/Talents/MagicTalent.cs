@@ -15,7 +15,7 @@ namespace Spellsword
         public MagicTalent()
         {
             Name = "Increase Magic";
-            Description = "Increases your magic by 1";
+            Description = "Increases your current \nMagic by 1";
             Cost = 1;
         }
         public override void ApplyTalent(Character player)

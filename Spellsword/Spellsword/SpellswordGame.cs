@@ -181,6 +181,10 @@ namespace Spellsword
             SwitchMenuCommand talentMenuCommand = new SwitchMenuCommand("Talents", this, mainMenu, talentMenu);
             menuCommands.Add(talentMenuCommand);
 
+            StatusMenu statusMenu = new StatusMenu(this, player);
+            SwitchMenuCommand statusMenuCommand = new SwitchMenuCommand("Player Status", this, mainMenu, statusMenu);
+            menuCommands.Add(statusMenuCommand);
+
             return menuCommands;
         }
 
