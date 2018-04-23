@@ -30,11 +30,11 @@ namespace Spellsword
         {
             base.Draw(spriteBatch);
             Vector2 startingLocation = this.Location + new Vector2(20, 10);
-            DrawText(spriteBatch, startingLocation);
+            DrawText(spriteBatch, ref startingLocation);
             DrawSecondCommands(spriteBatch, startingLocation);
         }
 
-        protected virtual void DrawText(SpriteBatch spriteBatch, Vector2 location)
+        protected virtual void DrawText(SpriteBatch spriteBatch, ref Vector2 location)
         {
             if(currentText != null)
             {
