@@ -11,5 +11,7 @@ namespace Spellsword
         string Name { get; }
         string Description { get; }
         Character User { get; }
+
+        Element AttackElement { get; }
     }
 }

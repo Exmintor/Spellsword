@@ -12,10 +12,11 @@ namespace Spellsword
         public string Description { get; protected set; }
         public Character User { get; protected set; }
         public int Damage { get; protected set; }
+        public Element AttackElement { get; protected set; }
 
         public virtual void UpdateDescription()
         {
-            Description = "Deals " + Damage + " damage to \ntarget";
+            this.Description = "Deals " + Damage + " damage to \ntarget";
         }
     }
 }

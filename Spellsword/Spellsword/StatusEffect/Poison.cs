@@ -15,6 +15,7 @@ namespace Spellsword
 
         public string Name { get; private set; }
         public string Description { get; protected set; }
+        public Element AttackElement { get; protected set; }
 
         private int damagePerTurn;
 
@@ -25,6 +26,7 @@ namespace Spellsword
             this.Duration = duration;
             this.damagePerTurn = damagePerTurn + User.Magic;
             this.Description = "Deals " + this.damagePerTurn + " damage to target each turn for " + Duration + " turns.";
+            this.AttackElement = Element.None;
 
             this.Priority = 2;
         }
@@ -35,7 +37,7 @@ namespace Spellsword
         }
         public void AfterTick(Character attachedEntity)
         {
-            attachedEntity.TakeDamage(damagePerTurn);
+            attachedEntity.TakeDamage(damagePerTurn, AttackElement);
             Duration--;
             if(Duration <= 0)
             {

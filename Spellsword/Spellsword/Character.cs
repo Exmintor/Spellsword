@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Spellsword
 {
+    public enum Element { None, NoWeakOrResist, Fire, Ice, Lightning }
     public abstract class Character : Entity
     {
         public event Action<Entity> Died;
@@ -14,6 +15,9 @@ namespace Spellsword
         public int Strength { get; protected set; }
         public int Magic { get; protected set; }
         public int Defense { get; set; } // Abstract property, add setter
+
+        public Element Weakness { get; private set; }
+        public Element Resistance { get; private set; }
 
         public List<Attack> SpellList { get; private set; }
 
@@ -25,11 +29,24 @@ namespace Spellsword
             SpellList = new List<Attack>();
             StatusEffects = new List<IStatusEffect>();
             effectsToRemove = new List<IStatusEffect>();
+            Weakness = Element.NoWeakOrResist;
+            Resistance = Element.NoWeakOrResist;
         }
 
-        public virtual void TakeDamage(int damage)
+        public virtual void TakeDamage(int damage, Element element)
         {
-            this.Health -= damage - Defense;
+            if(element == Weakness)
+            {
+                damage *= 2;
+            }
+            else if(element == Resistance)
+            {
+                damage /= 2;
+            }
+            if(damage - Defense > 0)
+            {
+                this.Health -= damage - Defense;
+            }
             if (this.Health <= 0)
             {
                 if (Died != null)

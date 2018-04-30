@@ -14,6 +14,7 @@ namespace Spellsword
         public string Description { get; protected set; }
         public int Duration { get; protected set; }
         public int Priority { get; protected set; }
+        public Element AttackElement { get; protected set; }
 
         private IWeapon thisWeapon;
 
@@ -25,6 +26,7 @@ namespace Spellsword
             this.Duration = duration;
             this.Priority = 0;
             this.thisWeapon = weapon; ;
+            this.AttackElement = Element.None;
         }
 
         public void BeforeTick(Character attachedEntity)

@@ -24,7 +24,7 @@ namespace Spellsword
             if(action is Attack)
             {
                 int damage = ((Attack)action).Damage;
-                target.TakeDamage(damage);
+                target.TakeDamage(damage, action.AttackElement);
             }
             if(action is IStatusEffect) // Not good because I probably want to decouple Actions from Effects
             {

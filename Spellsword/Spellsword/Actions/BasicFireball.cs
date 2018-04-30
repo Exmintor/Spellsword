@@ -13,13 +13,14 @@ namespace Spellsword
             this.Name = "Fireball";
             this.User = attacker;
             this.Damage = 15 + User.Magic;
-            this.Description = "Deals " + Damage + " damage to \ntarget";
+            this.Description = "Deals " + Damage + " " + this.AttackElement + " damage to \ntarget";
         }
 
         public override void UpdateDescription()
         {
-            base.UpdateDescription();
+            this.Description = "Deals " + Damage + " " + this.AttackElement + " damage \nto target";
             Damage = 15 + User.Magic;
+            this.AttackElement = Element.Fire;
         }
     }
 }

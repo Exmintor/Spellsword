@@ -28,10 +28,10 @@ namespace Spellsword
             return action;
         }
 
-        public override void TakeDamage(int damage)
+        public override void TakeDamage(int damage, Element element)
         {
             //TODO: Override with damage calculation
-            base.TakeDamage(damage);
+            base.TakeDamage(damage, element);
         }
     }
 }
