@@ -15,12 +15,13 @@ namespace Spellsword
         public StrengthTalent()
         {
             Name = "Increase Strength";
-            Description = "Increases your current \nStrength by 1";
+            Description = "Increases your current \nStrength by 5";
             Cost = 1;
         }
         public override void ApplyTalent(Character player)
         {
-            player.IncreaseStrength(1);
+            base.ApplyTalent(player);
+            player.IncreaseStrength(5);
         }
     }
 }

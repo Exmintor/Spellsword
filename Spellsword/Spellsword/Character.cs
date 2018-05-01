@@ -6,18 +6,30 @@ using System.Threading.Tasks;
 
 namespace Spellsword
 {
-    public enum Element { None, NoWeakOrResist, Fire, Ice, Lightning }
+    public enum Element { None, Fire, Ice, Lightning, Poison }
     public abstract class Character : Entity
     {
         public event Action<Entity> Died;
 
+        public int MaxHealth { get; protected set; }
         public int Health { get; protected set; }
+        public bool IsAlive
+        {
+            get
+            {
+                if(Health > 0)
+                {
+                    return true;
+                }
+                return false;
+            }
+        }
         public int Strength { get; protected set; }
         public int Magic { get; protected set; }
         public int Defense { get; set; } // Abstract property, add setter
 
-        public Element Weakness { get; private set; }
-        public Element Resistance { get; private set; }
+        public List<Element> Weakness { get; protected set; }
+        public List<Element> Resistance { get; protected set; }
 
         public List<Attack> SpellList { get; private set; }
 
@@ -29,21 +41,39 @@ namespace Spellsword
             SpellList = new List<Attack>();
             StatusEffects = new List<IStatusEffect>();
             effectsToRemove = new List<IStatusEffect>();
-            Weakness = Element.NoWeakOrResist;
-            Resistance = Element.NoWeakOrResist;
+            Weakness = new List<Element>();
+            Resistance = new List<Element>();
         }
 
         public virtual void TakeDamage(int damage, Element element)
         {
-            if(element == Weakness)
+            bool resisted = false;
+            foreach(Element instance in Resistance)
             {
-                damage *= 2;
+                if(element == instance)
+                {
+                    damage /= 2;
+                    resisted = true;
+                    break;
+                }
             }
-            else if(element == Resistance)
+            if(resisted == false)
             {
-                damage /= 2;
+                foreach(Element instance in Weakness)
+                {
+                    if(element == instance)
+                    {
+                        damage *= 2;
+                        break;
+                    }
+                }
             }
-            if(damage - Defense > 0)
+
+            if(element == Element.Poison)
+            {
+                this.Health -= damage;
+            }
+            else if(damage - Defense > 0)
             {
                 this.Health -= damage - Defense;
             }
@@ -64,7 +94,20 @@ namespace Spellsword
         {
             Magic += amount;
         }
+        public virtual void IncreaseHealth(int amount)
+        {
+            MaxHealth += amount;
+            Health += amount;
+        }
+        public virtual void IncreaseDefense(int amount)
+        {
+            Defense += amount;
+        }
 
+        public virtual void HealToMax()
+        {
+            Health = MaxHealth;
+        }
         public virtual void AddStatusEffect(IStatusEffect effect)
         {
             StatusEffects.Add(effect);

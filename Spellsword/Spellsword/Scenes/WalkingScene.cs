@@ -19,6 +19,7 @@ namespace Spellsword.Scenes
         //Temp test
         private List<WorldEnemy> enemies;
         private List<WorldSword> swords;
+        private List<EmptyTile> emptyTiles;
         public WalkingScene(SpellswordGame game, World thisWorld, WalkingPlayer player)
         {
             inputHandler = game.Services.GetService<InputHandler>();
@@ -31,17 +32,52 @@ namespace Spellsword.Scenes
             this.game = game;
             this.thisWorld = thisWorld;
             this.player = player;
+
+            string[] mapFile =
+            {
+                "11111110001111111",
+                "11111110001111111",
+                "11111110001111111",
+                "11110000000001111",
+                "11110000000001111",
+                "11110000000001111",
+                "00010000000001000",
+                "00000000000000000",
+                "00010000000001000",
+                "11110000000001111",
+                "11110000000001111",
+                "11110000000001111",
+                "00010000000001000",
+                "00000000000000000",
+                "00010000000001000",
+                "11110000000001111",
+                "11110000000001111",
+                "11110000000001111",
+                "11110000000001111",
+                "11111111011111111",
+                "11111110001111111",
+                "11111110001111111",
+                "11111110001111111"
+            };
+
+            emptyTiles = new List<EmptyTile>();
+            CreateEmptyTiles(game, mapFile);
+
             //Temp test
             enemies = new List<WorldEnemy>();
-            this.enemies.Add(new WorldEnemy(game, thisWorld, new Point(1,0)));
-            this.enemies.Add(new WorldEnemy(game, thisWorld, new Point(8, 1)));
-            this.enemies.Add(new WorldEnemy(game, thisWorld, new Point(2, 8)));
-            this.enemies.Add(new WorldEnemy(game, thisWorld, new Point(9, 8)));
+            this.enemies.Add(new WorldEnemy(game, thisWorld, new Point(3, 7))); // Welp
+            this.enemies.Add(new WorldEnemy(game, thisWorld, new Point(3, 13))); // Zombie
+            this.enemies.Add(new WorldEnemy(game, thisWorld, new Point(13, 7))); // Wraith
+            this.enemies.Add(new WorldEnemy(game, thisWorld, new Point(13, 13))); // Ghost
+            this.enemies.Add(new WorldEnemy(game, thisWorld, new Point(8, 19))); // Flower
+            this.enemies.Add(new WorldEnemy(game, thisWorld, new Point(8, 1))); // Dragon Boss
+
             // More Temp Test
             swords = new List<WorldSword>();
-            this.swords.Add(new WorldSword(game, thisWorld, new Point(0, 0)));
-            this.swords.Add(new WorldSword(game, thisWorld, new Point(5, 3)));
-            this.swords.Add(new WorldSword(game, thisWorld, new Point(10, 10)));
+            this.swords.Add(new WorldSword(game, thisWorld, new Point(1, 7))); // Ice Shield
+            this.swords.Add(new WorldSword(game, thisWorld, new Point(1, 13))); // Ice Blade
+            this.swords.Add(new WorldSword(game, thisWorld, new Point(15, 7))); // Lightning Blade
+            this.swords.Add(new WorldSword(game, thisWorld, new Point(15, 13))); // Spell/Power Focus
 
             InitializePlayerToMiddle();
         }
@@ -77,6 +113,10 @@ namespace Spellsword.Scenes
             {
                 sword.Draw(spriteBatch);
             }
+            foreach(EmptyTile tile in emptyTiles)
+            {
+                tile.Draw(spriteBatch);
+            }
         }
 
         private void InitializePlayerToMiddle()
@@ -99,6 +139,27 @@ namespace Spellsword.Scenes
             foreach(WorldSword sword in swords)
             {
                 sword.Location += amountToMove;
+            }
+            foreach(EmptyTile tile in emptyTiles)
+            {
+                tile.Location += amountToMove;
+            }
+        }
+
+        private void CreateEmptyTiles(SpellswordGame game, string[] mapFile)
+        {
+            for (int i = 0; i < thisWorld.ySize; i++)
+            {
+                for (int j = 0; j < thisWorld.xSize; j++)
+                {
+                    if (mapFile[i][j] == '1')
+                    {
+                        Point newPoint = new Point(j, i);
+                        EmptyTile tile = new EmptyTile(game, thisWorld, newPoint);
+                        emptyTiles.Add(tile);
+                        thisWorld.RegisterEntity(tile, newPoint);
+                    }
+                }
             }
         }
     }

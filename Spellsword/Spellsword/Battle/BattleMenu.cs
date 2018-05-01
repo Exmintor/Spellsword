@@ -13,14 +13,15 @@ namespace Spellsword
         public event Action<IAction> ActionChosen;
 
         private Character player;
+        private Character enemy;
         private IWeapon currentWeapon;
 
-        public BattleMenu(SpellswordGame game, Character player, IWeapon weapon) : this(game, player, weapon, new List<ISpellswordCommand>())
+        public BattleMenu(SpellswordGame game, Character player, Character enemy, IWeapon weapon) : this(game, player, enemy, weapon, new List<ISpellswordCommand>())
         {
             LoadBasicCommands();
         }
 
-        public BattleMenu(SpellswordGame game, Character player, IWeapon weapon, List<ISpellswordCommand> commands) : base(game, commands)
+        public BattleMenu(SpellswordGame game, Character player, Character enemy, IWeapon weapon, List<ISpellswordCommand> commands) : base(game, commands)
         {
             controller = new BattleController(game);
 
@@ -28,6 +29,7 @@ namespace Spellsword
             AnchorBottomLeft(game);
 
             this.player = player;
+            this.enemy = enemy;
             this.currentWeapon = weapon;
         }
 
@@ -72,7 +74,7 @@ namespace Spellsword
                 SwitchMenuCommand switchToSpells = new SwitchMenuCommand("Spells", thisGame, this, spellMenu);
                 currentCommands.Add(switchToSpells);
             }
-
+            currentCommands.Add(new RunCommand(thisGame, player, enemy));
             controller.ResetIndex();
         }
 
@@ -121,7 +123,7 @@ namespace Spellsword
             {
                 newCommands.Add(new NewSpellCommand(this, spell));
             }
-            BattleMenu newMenu = new BattleMenu(thisGame, player, currentWeapon, newCommands);
+            BattleMenu newMenu = new BattleMenu(thisGame, player, enemy, currentWeapon, newCommands);
             return newMenu;
         }
 

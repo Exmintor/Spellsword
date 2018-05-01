@@ -49,7 +49,7 @@ namespace Spellsword
 
             animator = new Animator(game, this);
             controller = new PlayerController(game);
-            this.CurrentTileLocation = new Point(8, 8);
+            this.CurrentTileLocation = new Point(8, 21);
             this.Location = gameWorld.GetTileLocation(CurrentTileLocation);
 
             CurrentSprite = game.Content.Load<Texture2D>("ForwardStill");

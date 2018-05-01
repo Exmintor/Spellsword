@@ -58,7 +58,7 @@ namespace Spellsword
         protected override void Initialize()
         {
             base.Initialize();
-            Point gameSize = new Point(Parameters.numTiles, Parameters.numTiles);
+            Point gameSize = new Point(17, 23);
             World gameWorld = new World(gameSize, Content.Load<Texture2D>("BaseTile"));
             WalkingPlayer player = new WalkingPlayer(this, gameWorld);
             walkingScene = new WalkingScene(this, gameWorld, player);
@@ -136,7 +136,8 @@ namespace Spellsword
             this.CurrentState = GameState.World;
             if(previousState == GameState.Battle)
             {
-                SwitchSong();
+                battleScene.UnsubscribeDeathHandlers();
+                SwitchSong(); 
             }
             if(previousState == GameState.Paused)
             {

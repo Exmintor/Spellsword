@@ -15,12 +15,13 @@ namespace Spellsword
         public MagicTalent()
         {
             Name = "Increase Magic";
-            Description = "Increases your current \nMagic by 1";
+            Description = "Increases your current \nMagic by 5";
             Cost = 1;
         }
         public override void ApplyTalent(Character player)
         {
-            player.IncreaseMagic(1);
+            base.ApplyTalent(player);
+            player.IncreaseMagic(5);
         }
     }
 }

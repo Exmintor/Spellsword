@@ -24,7 +24,7 @@ namespace Spellsword
 
         public void Update(WalkingPlayer player)
         {
-            if(inputHandler.IsButtonHeld(Keys.Space) || inputHandler.WasButtonPressed(Keys.Space))
+            if(inputHandler.WasButtonPressed(Keys.Space))
             {
                 player.Interact();
             }

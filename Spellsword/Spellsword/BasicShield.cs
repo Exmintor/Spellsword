@@ -6,17 +6,16 @@ using System.Threading.Tasks;
 
 namespace Spellsword
 {
-    public class BasicFocus : Weapon
+    public class BasicShield : Weapon
     {
-        public BasicFocus()
+        public BasicShield()
         {
-            IsFocus = true;
-            Damage = 4;
-            Defense = 2;
-            Name = "Spell Focus";
+            Damage = 1;
+            Defense = 8;
+            Name = "Shield";
 
             string isFocus = "";
-            if(IsFocus)
+            if (IsFocus)
             {
                 isFocus = "Can cast spells";
             }

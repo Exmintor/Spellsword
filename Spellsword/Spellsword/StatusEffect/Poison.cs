@@ -26,23 +26,23 @@ namespace Spellsword
             this.Duration = duration;
             this.damagePerTurn = damagePerTurn + User.Magic;
             this.Description = "Deals " + this.damagePerTurn + " damage to target each turn for " + Duration + " turns.";
-            this.AttackElement = Element.None;
+            this.AttackElement = Element.Poison;
 
             this.Priority = 2;
         }
 
         public void BeforeTick(Character attachedEntity)
         {
-            //Do nothing
-        }
-        public void AfterTick(Character attachedEntity)
-        {
             attachedEntity.TakeDamage(damagePerTurn, AttackElement);
             Duration--;
-            if(Duration <= 0)
+            if (Duration <= 0)
             {
                 attachedEntity.RemoveStatusEffect(this);
             }
+        }
+        public void AfterTick(Character attachedEntity)
+        {
+            //Do nothing
         }
 
         public void Apply(Character attachedEntity)

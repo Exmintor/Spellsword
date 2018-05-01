@@ -12,7 +12,7 @@ namespace Spellsword
         {
             this.IsSword = true;
             Damage = 10;
-            Defense = 10;
+            Defense = 5;
             Name = "Sword";
 
             string isFocus = "";

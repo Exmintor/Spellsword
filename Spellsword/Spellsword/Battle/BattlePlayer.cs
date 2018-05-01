@@ -26,13 +26,13 @@ namespace Spellsword
             {
                 if(value == BattlePlayerState.FirstAction)
                 {
-                    menu = new BattleMenu(game, ThisEntity, ((Player)ThisEntity).FirstWeapon);
+                    menu = new BattleMenu(game, ThisEntity, (currentScene.GetOpponent(this)).ThisEntity, ((Player)ThisEntity).FirstWeapon);
                     menu.ActionChosen += OnActionChosen;
                 }
                 else if(value == BattlePlayerState.SecondAction)
                 {
                     menu.ActionChosen -= OnActionChosen;
-                    menu = new BattleMenu(game, ThisEntity, ((Player)ThisEntity).SecondWeapon);
+                    menu = new BattleMenu(game, ThisEntity, (currentScene.GetOpponent(this)).ThisEntity, ((Player)ThisEntity).SecondWeapon);
                     menu.ActionChosen += OnActionChosen;
                 }
                 else

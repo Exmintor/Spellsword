@@ -19,7 +19,7 @@ namespace Spellsword.Scenes
 
         private BattleSceneState currentState;
 
-        private Queue<BattleAction> battleQueue;
+        private Stack<BattleAction> battleQueue;
 
         public BattleScene(SpellswordGame game, Character player, Character enemy) : base(game, null)
         {
@@ -30,7 +30,7 @@ namespace Spellsword.Scenes
             currentMenu = null;
             currentState = BattleSceneState.Idle;
 
-            battleQueue = new Queue<BattleAction>();
+            battleQueue = new Stack<BattleAction>();
         }
 
         public void ChangeCombatants(SpellswordGame game, Character player, Character enemy)
@@ -39,19 +39,9 @@ namespace Spellsword.Scenes
             {
                 this.player = new BattlePlayer(game, this, (Player)player);
             }
-            else
-            {
-                this.player = new BattleEnemy(game, this, (Enemy)player);
-            }
 
-            if (enemy is Enemy)
-            {
-                this.enemy = new BattleEnemy(game, this, (Enemy)enemy);
-            }
-            else
-            {
-                this.enemy = new BattlePlayer(game, this, (Player)enemy);
-            }
+            this.enemy = new BattleEnemy(game, this, enemy);
+
             if (this.player is BattlePlayer)
             {
                 ((BattlePlayer)this.player).FinishedTurn += OnPlayerFinishedTurn;
@@ -131,7 +121,8 @@ namespace Spellsword.Scenes
         {
             if (battleQueue.Count != 0)
             {
-                battleQueue.Dequeue().Resolve();
+                battleQueue.Pop().Resolve();
+                //battleQueue.Dequeue().Resolve();
             }
             else
             {
@@ -161,7 +152,8 @@ namespace Spellsword.Scenes
 
         public void QueueAction(BattleAction action)
         {
-            battleQueue.Enqueue(action);
+            battleQueue.Push(action);
+            //battleQueue.Enqueue(action);
         }
 
         private void OnPlayerFinishedTurn()
@@ -178,9 +170,15 @@ namespace Spellsword.Scenes
         {
             if (entityThatDied is Enemy)
             {
-                ((Player)player.ThisEntity).GainTalentPoints(((Enemy)entityThatDied).PointsOnDefeat);
+                ((Player)player.ThisEntity).GainRewards((((Enemy)entityThatDied).Reward));
             }
             bothAlive = false;
+        }
+
+        public void UnsubscribeDeathHandlers()
+        {
+            this.player.ThisEntity.Died -= HandleDeath;
+            this.enemy.ThisEntity.Died -= HandleDeath;
         }
 
         private void CheckForDeath()
@@ -191,8 +189,12 @@ namespace Spellsword.Scenes
                 EndCombat();
             }
         }
-        private void EndCombat()
+        public void EndCombat()
         {
+            if(player.ThisEntity.IsAlive)
+            {
+                player.ThisEntity.HealToMax();
+            }
             game.SwitchToWorld();
         }
     }

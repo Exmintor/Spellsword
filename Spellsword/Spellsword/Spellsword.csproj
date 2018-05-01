@@ -44,6 +44,7 @@
     <Compile Include="Animation\Animator.cs" />
     <Compile Include="Actions\Attack.cs" />
     <Compile Include="Actions\BasicFireball.cs" />
+    <Compile Include="BasicShield.cs" />
     <Compile Include="Battle\BattleCommands\AttackCommand.cs" />
     <Compile Include="Commands\BackCommand.cs" />
     <Compile Include="Character.cs" />
@@ -54,6 +55,8 @@
     <Compile Include="EmptyCommand.cs" />
     <Compile Include="MainMenu.cs" />
     <Compile Include="MenuScene.cs" />
+    <Compile Include="Reward.cs" />
+    <Compile Include="RunCommand.cs" />
     <Compile Include="Scenes\Scene.cs" />
     <Compile Include="SpellMenu.cs" />
     <Compile Include="StatusEffect\Defend.cs" />
@@ -103,6 +106,7 @@
     <Compile Include="Scenes\WalkingScene.cs" />
     <Compile Include="SpellswordGame.cs" />
     <Compile Include="Utility\Sprite.cs" />
+    <Compile Include="World\EmptyTile.cs" />
     <Compile Include="World\WorldSword.cs" />
     <Compile Include="World\Tile.cs" />
     <Compile Include="World\WalkingPlayer.cs" />
@@ -126,6 +130,7 @@
     <Content Include="Content\BasicSword.png" />
     <Content Include="Content\BattleMenu.png" />
     <Content Include="Content\BattleMusic.mp3" />
+    <Content Include="Content\EmptyTile.png" />
     <Content Include="Content\EquipmentMenu.png" />
     <Content Include="Content\ForwardLeftFoot.png" />
     <Content Include="Content\ForwardRightFoot.png" />

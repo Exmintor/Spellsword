@@ -11,7 +11,6 @@ namespace Spellsword
     public class TalentMenu : Menu
     {
         private Player player;
-        private List<Talent> availableTalents;
         private TextMenu textMenu;
 
         public TalentMenu(SpellswordGame game, Player player) : base(game)
@@ -23,9 +22,6 @@ namespace Spellsword
             textMenu = new TextMenu(game, "");
 
             this.player = player;
-            availableTalents = new List<Talent>();
-            availableTalents.Add(new StrengthTalent());
-            availableTalents.Add(new MagicTalent());
             this.currentCommands = GenerateCommands();
         }
 
@@ -63,7 +59,7 @@ namespace Spellsword
         private List<ISpellswordCommand> GenerateCommands()
         {
             List<ISpellswordCommand> commands = new List<ISpellswordCommand>();
-            foreach(Talent talent in availableTalents)
+            foreach(Talent talent in player.AvailableTalents)
             {
                 AddTalentCommand newCommand = new AddTalentCommand(player, talent);
                 commands.Add(newCommand);
@@ -73,9 +69,9 @@ namespace Spellsword
 
         private Talent GetTalentAtIndex(int index)
         {
-            if(index < availableTalents.Count)
+            if(index < player.AvailableTalents.Count)
             {
-                return availableTalents[index];
+                return player.AvailableTalents[index];
             }
             return null;
         }
