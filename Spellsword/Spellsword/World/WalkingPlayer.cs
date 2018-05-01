@@ -45,14 +45,14 @@ namespace Spellsword
         {
             this.game = game;
             this.gameWorld = gameWorld;
-            this.thisEntity = new Player();
+            this.thisEntity = new Player("BackwardsStill", "Spellsword");
 
             animator = new Animator(game, this);
             controller = new PlayerController(game);
             this.CurrentTileLocation = new Point(8, 21);
             this.Location = gameWorld.GetTileLocation(CurrentTileLocation);
 
-            CurrentSprite = game.Content.Load<Texture2D>("ForwardStill");
+            CurrentSprite = game.Content.Load<Texture2D>(((Player)thisEntity).WorldImage);
             CurrentWalkingState = WalkingState.Still;
 
             MovementQueue = new Stack<Vector2>();

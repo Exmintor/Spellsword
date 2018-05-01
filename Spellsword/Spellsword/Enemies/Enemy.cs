@@ -8,9 +8,9 @@ namespace Spellsword
 {
     public class Enemy : Character
     {
-        private IWeapon basicWeapon;
-        public Reward Reward { get; private set; }
-        public Enemy()
+        protected IWeapon basicWeapon;
+        public Reward Reward { get; protected set; }
+        public Enemy(string worldImage, string battleImage) : base(worldImage, battleImage)
         {
             basicWeapon = new BasicSword();
 

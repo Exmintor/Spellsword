@@ -11,6 +11,9 @@ namespace Spellsword
     {
         public event Action<Entity> Died;
 
+        public string WorldImage { get; protected set; }
+        public string BattleImage { get; protected set; }
+
         public int MaxHealth { get; protected set; }
         public int Health { get; protected set; }
         public bool IsAlive
@@ -36,8 +39,11 @@ namespace Spellsword
         public List<IStatusEffect> StatusEffects { get; private set; }
         private List<IStatusEffect> effectsToRemove;
 
-        public Character()
+        public Character(string WorldImage, string BattleImage)
         {
+            this.WorldImage = WorldImage;
+            this.BattleImage = BattleImage;
+
             SpellList = new List<Attack>();
             StatusEffects = new List<IStatusEffect>();
             effectsToRemove = new List<IStatusEffect>();

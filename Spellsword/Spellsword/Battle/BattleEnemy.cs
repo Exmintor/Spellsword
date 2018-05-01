@@ -13,7 +13,7 @@ namespace Spellsword
     {
         public BattleEnemy(Game game, BattleScene currentScene, Character enemy)
         {
-            this.CurrentSprite = game.Content.Load<Texture2D>("Ghost");
+            this.CurrentSprite = game.Content.Load<Texture2D>(enemy.BattleImage);
             this.Location = Parameters.battleEnemyLocation;
 
             this.currentScene = currentScene;

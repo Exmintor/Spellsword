@@ -64,13 +64,19 @@ namespace Spellsword.Scenes
             CreateEmptyTiles(game, mapFile);
 
             //Temp test
+            Enemy ghost1 = new Enemy("BackwardsStill", "Ghost");
+            Enemy ghost2 = new Enemy("BackwardsStill", "Ghost");
+            Enemy ghost3 = new Enemy("BackwardsStill", "Ghost");
+            Enemy ghost4 = new Enemy("BackwardsStill", "Ghost");
+            Enemy ghost5 = new Enemy("BackwardsStill", "Ghost");
+            Enemy ghost6 = new Enemy("BackwardsStill", "Ghost");
             enemies = new List<WorldEnemy>();
-            this.enemies.Add(new WorldEnemy(game, thisWorld, new Point(3, 7))); // Welp
-            this.enemies.Add(new WorldEnemy(game, thisWorld, new Point(3, 13))); // Zombie
-            this.enemies.Add(new WorldEnemy(game, thisWorld, new Point(13, 7))); // Wraith
-            this.enemies.Add(new WorldEnemy(game, thisWorld, new Point(13, 13))); // Ghost
-            this.enemies.Add(new WorldEnemy(game, thisWorld, new Point(8, 19))); // Flower
-            this.enemies.Add(new WorldEnemy(game, thisWorld, new Point(8, 1))); // Dragon Boss
+            this.enemies.Add(new WorldEnemy(game, thisWorld, new Point(3, 7), ghost1)); // Welp
+            this.enemies.Add(new WorldEnemy(game, thisWorld, new Point(3, 13), ghost2)); // Zombie
+            this.enemies.Add(new WorldEnemy(game, thisWorld, new Point(13, 7), ghost3)); // Wraith
+            this.enemies.Add(new WorldEnemy(game, thisWorld, new Point(13, 13), ghost4)); // Ghost
+            this.enemies.Add(new WorldEnemy(game, thisWorld, new Point(8, 19), ghost5)); // Flower
+            this.enemies.Add(new WorldEnemy(game, thisWorld, new Point(8, 1), ghost6)); // Dragon Boss
 
             // More Temp Test
             swords = new List<WorldSword>();

@@ -16,7 +16,7 @@ namespace Spellsword
         public List<Talent> AvailableTalents { get; private set; }
         public List<Talent> CurrentTalents { get; private set; }
 
-        public Player()
+        public Player(string worldImage, string battleImage) : base(worldImage, battleImage)
         {
             FirstWeapon = new BasicSword();
             SecondWeapon = new BasicShield();

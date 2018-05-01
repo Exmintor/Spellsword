@@ -12,19 +12,19 @@ namespace Spellsword
     {
         private bool shouldDraw;
         private Point pointLocation;
-        public WorldEnemy(SpellswordGame game, World gameWorld, Point pointLocation)
+        public WorldEnemy(SpellswordGame game, World gameWorld, Point pointLocation, Character enemy)
         {
             shouldDraw = true;
             this.game = game;
             this.gameWorld = gameWorld;
-            thisEntity = new Enemy();
+            thisEntity = enemy;
             if(thisEntity is Character)
             {
                 ((Character)thisEntity).Died += OnEntityDied;
             }
 
             //Temp test
-            this.CurrentSprite = game.Content.Load<Texture2D>("BackwardsStill");
+            this.CurrentSprite = game.Content.Load<Texture2D>(enemy.WorldImage);
             this.pointLocation = pointLocation;
             this.Location = gameWorld.GetTileLocation(pointLocation);
             gameWorld.RegisterEntity(this, pointLocation);
