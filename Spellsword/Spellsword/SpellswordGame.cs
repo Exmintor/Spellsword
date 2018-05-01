@@ -50,14 +50,13 @@ namespace Spellsword
             graphics.PreferredBackBufferHeight = size;
             graphics.PreferredBackBufferWidth = size;
             Content.RootDirectory = "Content";
-
-            this.CurrentState = GameState.World;
-            SwitchSong();
         }
 
         protected override void Initialize()
         {
             base.Initialize();
+            this.CurrentState = GameState.World;
+            SwitchSong();
             Point gameSize = new Point(17, 23);
             World gameWorld = new World(gameSize, Content.Load<Texture2D>("BaseTile"));
             WalkingPlayer player = new WalkingPlayer(this, gameWorld);
@@ -149,6 +148,11 @@ namespace Spellsword
         {
             this.CurrentState = GameState.Paused;
             MediaPlayer.Pause();
+        }
+
+        public void ResetGame()
+        {
+            Initialize();
         }
 
         public void OpenMenu(Player player)
