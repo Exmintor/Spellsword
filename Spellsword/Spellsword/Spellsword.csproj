@@ -38,13 +38,13 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="AddTalentCommand.cs" />
+    <Compile Include="Commands\AddTalentCommand.cs" />
     <Compile Include="Animation\Animation.cs" />
     <Compile Include="Animation\AnimationFrame.cs" />
     <Compile Include="Animation\Animator.cs" />
     <Compile Include="Actions\Attack.cs" />
     <Compile Include="Actions\BasicFireball.cs" />
-    <Compile Include="BasicShield.cs" />
+    <Compile Include="Items\BasicShield.cs" />
     <Compile Include="Battle\BattleCommands\AttackCommand.cs" />
     <Compile Include="Commands\BackCommand.cs" />
     <Compile Include="Character.cs" />
@@ -52,22 +52,22 @@
     <Compile Include="Actions\ISelfTargetAction.cs" />
     <Compile Include="Commands\ISpellswordCommand.cs" />
     <Compile Include="Battle\BattleCommands\NewSpellCommand.cs" />
-    <Compile Include="EmptyCommand.cs" />
-    <Compile Include="MainMenu.cs" />
-    <Compile Include="MenuScene.cs" />
-    <Compile Include="Reward.cs" />
-    <Compile Include="RunCommand.cs" />
+    <Compile Include="Commands\EmptyCommand.cs" />
+    <Compile Include="Menus\MainMenu.cs" />
+    <Compile Include="Scenes\MenuScene.cs" />
+    <Compile Include="Enemies\Reward.cs" />
+    <Compile Include="Commands\RunCommand.cs" />
     <Compile Include="Scenes\Scene.cs" />
-    <Compile Include="SpellMenu.cs" />
+    <Compile Include="Menus\SpellMenu.cs" />
     <Compile Include="StatusEffect\Defend.cs" />
     <Compile Include="Commands\SwitchMenuCommand.cs" />
-    <Compile Include="StatusMenu.cs" />
-    <Compile Include="SwitchOutWeaponCommand.cs" />
-    <Compile Include="SwitchWeaponCommand.cs" />
-    <Compile Include="SwitchWeaponMenu.cs" />
+    <Compile Include="Menus\StatusMenu.cs" />
+    <Compile Include="Commands\SwitchOutWeaponCommand.cs" />
+    <Compile Include="Commands\SwitchWeaponCommand.cs" />
+    <Compile Include="Menus\SwitchWeaponMenu.cs" />
     <Compile Include="Talents\MagicTalent.cs" />
-    <Compile Include="EquipmentMenu\EquipmentMenu.cs" />
-    <Compile Include="EquipmentMenu\Inventory.cs" />
+    <Compile Include="Menus\EquipmentMenu.cs" />
+    <Compile Include="PlayerFolder\Inventory.cs" />
     <Compile Include="Items\Item.cs" />
     <Compile Include="Items\BasicFocus.cs" />
     <Compile Include="Items\BasicSword.cs" />
@@ -76,7 +76,7 @@
     <Compile Include="Battle\BattleController.cs" />
     <Compile Include="Battle\BattleEnemy.cs" />
     <Compile Include="Battle\BattleEntity.cs" />
-    <Compile Include="MenuController.cs" />
+    <Compile Include="Menus\MenuController.cs" />
     <Compile Include="Battle\BattleMenu.cs" />
     <Compile Include="Battle\BattlePlayer.cs" />
     <Compile Include="Enemies\Enemy.cs" />
@@ -85,12 +85,12 @@
     <Compile Include="IInteractable.cs" />
     <Compile Include="Talents\StrengthTalent.cs" />
     <Compile Include="Talents\Talent.cs" />
-    <Compile Include="TalentMenu\TalentMenu.cs" />
-    <Compile Include="TextMenu.cs" />
+    <Compile Include="Menus\TalentMenu.cs" />
+    <Compile Include="Menus\TextMenu.cs" />
     <Compile Include="Utility\InputHandler.cs" />
     <Compile Include="StatusEffect\IStatusEffect.cs" />
     <Compile Include="Items\IWeapon.cs" />
-    <Compile Include="Menu.cs" />
+    <Compile Include="Menus\Menu.cs" />
     <Compile Include="Parameters.cs" />
     <Compile Include="PlayerFolder\Player.cs" />
     <Compile Include="PlayerFolder\PlayerController.cs" />

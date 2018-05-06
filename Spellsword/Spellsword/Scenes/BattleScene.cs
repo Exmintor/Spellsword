@@ -194,8 +194,12 @@ namespace Spellsword.Scenes
             if(player.ThisEntity.IsAlive)
             {
                 player.ThisEntity.HealToMax();
+                game.SwitchToWorld();
             }
-            game.SwitchToWorld();
+            else
+            {
+                game.ResetGame();
+            }
         }
     }
 }
