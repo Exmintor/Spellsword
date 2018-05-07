@@ -8,7 +8,7 @@ namespace Spellsword
 {
     public class Flower : Enemy
     {
-        public Flower(string worldImage, string battleImage, IAction action) : base(worldImage, battleImage, action)
+        public Flower(string worldImage, string battleImage) : base(worldImage, battleImage)
         {
             MaxHealth = 50;
             Health = 50;

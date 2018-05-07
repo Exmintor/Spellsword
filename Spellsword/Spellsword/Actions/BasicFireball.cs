@@ -8,18 +8,21 @@ namespace Spellsword
 {
     public class BasicFireball : Attack
     {
-        public BasicFireball(Character attacker)
+        private int initialDamage;
+        public BasicFireball(Character attacker, int damage)
         {
+            initialDamage = damage;
+            this.AttackElement = Element.Fire;
             this.Name = "Fireball";
             this.User = attacker;
-            this.Damage = 15 + User.Magic;
+            this.Damage = initialDamage + User.Magic;
             this.Description = "Deals " + Damage + " " + this.AttackElement + " damage to \ntarget";
         }
 
         public override void UpdateDescription()
         {
             this.Description = "Deals " + Damage + " " + this.AttackElement + " damage \nto target";
-            Damage = 15 + User.Magic;
+            Damage = initialDamage + User.Magic;
             this.AttackElement = Element.Fire;
         }
     }

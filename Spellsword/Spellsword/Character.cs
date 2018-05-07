@@ -110,6 +110,23 @@ namespace Spellsword
             Defense += amount;
         }
 
+        public void AddWeakness(Element element)
+        {
+            Weakness.Add(element);
+        }
+        public void RemoveWeakness(Element element)
+        {
+            Weakness.Remove(element);
+        }
+        public void AddResistance(Element element)
+        {
+            Resistance.Add(element);
+        }
+        public void RemoveResistance(Element element)
+        {
+            Resistance.Remove(element);
+        }
+
         public virtual void HealToMax()
         {
             Health = MaxHealth;

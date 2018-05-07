@@ -13,15 +13,15 @@ namespace Spellsword
         private bool shouldDraw;
         private Point pointLocation;
 
-        public WorldSword(SpellswordGame game, World gameWorld, Point startingLocation)
+        public WorldSword(SpellswordGame game, World gameWorld, Point startingLocation, Weapon thisItem)
         {
             shouldDraw = true;
             this.game = game;
             this.gameWorld = gameWorld;
 
-            this.thisEntity = new BasicSword();
+            this.thisEntity = thisItem;
 
-            this.CurrentSprite = game.Content.Load<Texture2D>("BasicSword");
+            this.CurrentSprite = game.Content.Load<Texture2D>(thisItem.WorldImage);
             this.pointLocation = startingLocation;
             this.Location = gameWorld.GetTileLocation(pointLocation);
             gameWorld.RegisterEntity(this, pointLocation);

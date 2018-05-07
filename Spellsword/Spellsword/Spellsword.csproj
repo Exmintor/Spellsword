@@ -44,6 +44,12 @@
     <Compile Include="Animation\Animator.cs" />
     <Compile Include="Actions\Attack.cs" />
     <Compile Include="Actions\BasicFireball.cs" />
+    <Compile Include="FinalDesign\Enemies\Dragon.cs" />
+    <Compile Include="FinalDesign\Enemies\Flower.cs" />
+    <Compile Include="FinalDesign\Enemies\Ghost.cs" />
+    <Compile Include="FinalDesign\Abilities\IceDefend.cs" />
+    <Compile Include="FinalDesign\Items\IceShield.cs" />
+    <Compile Include="FinalDesign\Items\IceSword.cs" />
     <Compile Include="Items\BasicShield.cs" />
     <Compile Include="Battle\BattleCommands\AttackCommand.cs" />
     <Compile Include="Commands\BackCommand.cs" />
@@ -53,6 +59,8 @@
     <Compile Include="Commands\ISpellswordCommand.cs" />
     <Compile Include="Battle\BattleCommands\NewSpellCommand.cs" />
     <Compile Include="Commands\EmptyCommand.cs" />
+    <Compile Include="FinalDesign\Items\LightningSword.cs" />
+    <Compile Include="MagicShield.cs" />
     <Compile Include="Menus\MainMenu.cs" />
     <Compile Include="Scenes\MenuScene.cs" />
     <Compile Include="Enemies\Reward.cs" />
@@ -106,6 +114,7 @@
     <Compile Include="Scenes\WalkingScene.cs" />
     <Compile Include="SpellswordGame.cs" />
     <Compile Include="Utility\Sprite.cs" />
+    <Compile Include="FinalDesign\Enemies\Welp.cs" />
     <Compile Include="World\EmptyTile.cs" />
     <Compile Include="World\WorldSword.cs" />
     <Compile Include="World\Tile.cs" />
@@ -114,6 +123,8 @@
     <Compile Include="World\World.cs" />
     <Compile Include="World\WorldEnemy.cs" />
     <Compile Include="World\WorldEntity.cs" />
+    <Compile Include="FinalDesign\Enemies\Wraith.cs" />
+    <Compile Include="FinalDesign\Enemies\Zombie.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
@@ -151,7 +162,9 @@
   <ItemGroup>
     <None Include="Content\Arial.spritefont" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="FinalDesign\Talents\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

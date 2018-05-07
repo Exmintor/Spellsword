@@ -6,17 +6,18 @@ using System.Threading.Tasks;
 
 namespace Spellsword
 {
-    public class BasicFocus : Weapon
+    public class LightningSword : Weapon
     {
-        public BasicFocus(string worldImage) : base(worldImage)
+        public LightningSword(string worldImage, int damage, int defense) : base(worldImage)
         {
-            IsFocus = true;
-            Damage = 4;
-            Defense = 2;
-            Name = "Spell Focus";
+            this.IsSword = true;
+            Damage = damage;
+            Defense = defense;
+            ThisElement = Element.Lightning;
+            Name = "Lightning Sword";
 
             string isFocus = "";
-            if(IsFocus)
+            if (IsFocus)
             {
                 isFocus = "Can cast spells";
             }
@@ -27,6 +28,7 @@ namespace Spellsword
             Description = Name +
                 "\n    Attack: " + Damage +
                 "\n    Defense: " + Defense +
+                "\n    Lightning Damage" +
                 "\n    " + isFocus;
         }
     }

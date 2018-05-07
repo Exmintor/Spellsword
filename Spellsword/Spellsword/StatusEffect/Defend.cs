@@ -25,26 +25,26 @@ namespace Spellsword
             this.Description = "Grants " + weapon.Defense + " for one turn.";
             this.Duration = duration;
             this.Priority = 0;
-            this.thisWeapon = weapon; ;
+            this.thisWeapon = weapon;
             this.AttackElement = Element.None;
         }
 
-        public void BeforeTick(Character attachedEntity)
+        public virtual void BeforeTick(Character attachedEntity)
         {
             if(Duration <= 0)
             {
                 attachedEntity.RemoveStatusEffect(this);
             }
         }
-        public void AfterTick(Character attachedEntity)
+        public virtual void AfterTick(Character attachedEntity)
         {
             Duration--;
         }
-        public void Apply(Character attachedEntity)
+        public virtual void Apply(Character attachedEntity)
         {
             attachedEntity.Defense += thisWeapon.Defense;
         }
-        public void Remove(Character attachedEntity)
+        public virtual void Remove(Character attachedEntity)
         {
             attachedEntity.Defense -= thisWeapon.Defense;
         }

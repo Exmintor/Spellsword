@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Spellsword
 {
-    public class Ghost : Enemy
+    public class Zombie : Enemy
     {
-        public Ghost(string worldImage, string battleImage) : base(worldImage, battleImage)
+        public Zombie(string worldImage, string battleImage) : base(worldImage, battleImage)
         {
             MaxHealth = 50;
             Health = 50;

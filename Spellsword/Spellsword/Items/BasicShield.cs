@@ -8,7 +8,7 @@ namespace Spellsword
 {
     public class BasicShield : Weapon
     {
-        public BasicShield()
+        public BasicShield(string worldImage) : base(worldImage)
         {
             Damage = 1;
             Defense = 8;

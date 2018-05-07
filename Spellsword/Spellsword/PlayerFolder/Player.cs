@@ -18,13 +18,14 @@ namespace Spellsword
 
         public Player(string worldImage, string battleImage) : base(worldImage, battleImage)
         {
-            FirstWeapon = new BasicSword();
-            SecondWeapon = new BasicShield();
+            FirstWeapon = new BasicSword("BasicSword", 10, 5);
+            SecondWeapon = new BasicShield("BasicSword");
             Inventory = new Inventory();
             CurrentTalents = new List<Talent>();
             //Temp test
-            Inventory.AddWeapon(new BasicFocus());
-            SpellList.Add(new BasicFireball(this));
+            Inventory.AddWeapon(new BasicFocus("BasicSword"));
+            SpellList.Add(new BasicFireball(this, 15));
+            //SpellList.Add(new MagicShield(this, 1, 15));
 
             AvailableTalents = new List<Talent>();
             AvailableTalents.Add(new StrengthTalent());

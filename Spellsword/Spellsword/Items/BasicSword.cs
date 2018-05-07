@@ -8,11 +8,11 @@ namespace Spellsword
 {
     public class BasicSword : Weapon
     {
-        public BasicSword()
+        public BasicSword(string worldImage, int damage, int defense) : base(worldImage)
         {
             this.IsSword = true;
-            Damage = 10;
-            Defense = 5;
+            Damage = damage;
+            Defense = defense;
             Name = "Sword";
 
             string isFocus = "";

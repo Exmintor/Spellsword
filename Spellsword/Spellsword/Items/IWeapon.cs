@@ -14,6 +14,7 @@ namespace Spellsword
 
         int Damage { get; }
         int Defense { get; }
+        Element ThisElement { get; }
 
         string Name { get; }
         string Description { get; }

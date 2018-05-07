@@ -64,26 +64,30 @@ namespace Spellsword.Scenes
             CreateEmptyTiles(game, mapFile);
 
             //Temp test
-            Enemy ghost1 = new Enemy("BackwardsStill", "Ghost");
-            Enemy ghost2 = new Enemy("BackwardsStill", "Ghost");
-            Enemy ghost3 = new Enemy("BackwardsStill", "Ghost");
-            Enemy ghost4 = new Enemy("BackwardsStill", "Ghost");
-            Enemy ghost5 = new Enemy("BackwardsStill", "Ghost");
-            Enemy ghost6 = new Enemy("BackwardsStill", "Ghost");
+            Enemy welp = new Welp("BackwardsStill", "Ghost");
+            Enemy zombie = new Zombie("BackwardsStill", "Ghost");
+            Enemy wraith = new Wraith("BackwardsStill", "Ghost");
+            Enemy ghost = new Ghost("BackwardsStill", "Ghost");
+            Enemy flower = new Flower("BackwardsStill", "Ghost");
+            Enemy dragon = new Dragon("BackwardsStill", "Ghost", "Ghost");
             enemies = new List<WorldEnemy>();
-            this.enemies.Add(new WorldEnemy(game, thisWorld, new Point(3, 7), ghost1)); // Welp
-            this.enemies.Add(new WorldEnemy(game, thisWorld, new Point(3, 13), ghost2)); // Zombie
-            this.enemies.Add(new WorldEnemy(game, thisWorld, new Point(13, 7), ghost3)); // Wraith
-            this.enemies.Add(new WorldEnemy(game, thisWorld, new Point(13, 13), ghost4)); // Ghost
-            this.enemies.Add(new WorldEnemy(game, thisWorld, new Point(8, 19), ghost5)); // Flower
-            this.enemies.Add(new WorldEnemy(game, thisWorld, new Point(8, 1), ghost6)); // Dragon Boss
+            this.enemies.Add(new WorldEnemy(game, thisWorld, new Point(3, 7), welp)); // Welp
+            this.enemies.Add(new WorldEnemy(game, thisWorld, new Point(3, 13), zombie)); // Zombie
+            this.enemies.Add(new WorldEnemy(game, thisWorld, new Point(13, 7), wraith)); // Wraith
+            this.enemies.Add(new WorldEnemy(game, thisWorld, new Point(13, 13), ghost)); // Ghost
+            this.enemies.Add(new WorldEnemy(game, thisWorld, new Point(8, 19), flower)); // Flower
+            this.enemies.Add(new WorldEnemy(game, thisWorld, new Point(8, 1), dragon)); // Dragon Boss
 
             // More Temp Test
             swords = new List<WorldSword>();
-            this.swords.Add(new WorldSword(game, thisWorld, new Point(1, 7))); // Ice Shield
-            this.swords.Add(new WorldSword(game, thisWorld, new Point(1, 13))); // Ice Blade
-            this.swords.Add(new WorldSword(game, thisWorld, new Point(15, 7))); // Lightning Blade
-            this.swords.Add(new WorldSword(game, thisWorld, new Point(15, 13))); // Spell/Power Focus
+            Weapon iceShield = new IceShield("BasicSword", 8, 15);
+            Weapon iceSword = new IceSword("BasicSword", 20, 5);
+            Weapon lightningSword = new LightningSword("BasicSword", 30, 5);
+            Weapon focus = new BasicFocus("BasicSword");
+            this.swords.Add(new WorldSword(game, thisWorld, new Point(1, 7), iceShield)); // Ice Shield
+            this.swords.Add(new WorldSword(game, thisWorld, new Point(1, 13), iceSword)); // Ice Blade
+            this.swords.Add(new WorldSword(game, thisWorld, new Point(15, 7), lightningSword)); // Lightning Blade
+            this.swords.Add(new WorldSword(game, thisWorld, new Point(15, 13), focus)); // Spell/Power Focus
 
             InitializePlayerToMiddle();
         }

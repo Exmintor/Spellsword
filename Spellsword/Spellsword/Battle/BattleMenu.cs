@@ -89,7 +89,15 @@ namespace Spellsword
 
         public void DefendAction()
         {
-            IAction action = new Defend(player, 1, currentWeapon);
+            IAction action;
+            if(currentWeapon is IceShield)
+            {
+                action = new IceDefend(player, 1, currentWeapon);
+            }
+            else
+            {
+                action = new Defend(player, 1, currentWeapon);
+            }
             if (ActionChosen != null)
             {
                 ActionChosen.Invoke(action);

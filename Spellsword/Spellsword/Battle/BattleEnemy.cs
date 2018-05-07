@@ -11,6 +11,9 @@ namespace Spellsword
 {
     public class BattleEnemy : BattleEntity
     {
+        private Game game;
+        private Character enemy;
+
         public BattleEnemy(Game game, BattleScene currentScene, Character enemy)
         {
             this.CurrentSprite = game.Content.Load<Texture2D>(enemy.BattleImage);
@@ -18,6 +21,19 @@ namespace Spellsword
 
             this.currentScene = currentScene;
             this.ThisEntity = enemy;
+
+            this.game = game;
+            this.enemy = enemy;
+        }
+
+        public override void Update()
+        {
+            base.Update();
+            RefreshEnemyImage();
+        }
+        private void RefreshEnemyImage()
+        {
+            this.CurrentSprite = game.Content.Load<Texture2D>(enemy.BattleImage);
         }
     }
 }

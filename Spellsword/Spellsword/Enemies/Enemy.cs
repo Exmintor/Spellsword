@@ -37,7 +37,7 @@ namespace Spellsword
 
         public override IAction ChooseAction()
         {
-            return basicAction;
+            return new Poison(this, 2, 5);
         }
 
         public override void TakeDamage(int damage, Element element)

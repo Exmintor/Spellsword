@@ -73,7 +73,7 @@ namespace Spellsword.Scenes
                 case BattleSceneState.Waiting:
                     player.Update();
                     enemy.Update();
-                    if(currentMenu != null)
+                    if (currentMenu != null)
                     {
                         currentMenu.Update();
                     }
