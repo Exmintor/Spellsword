@@ -68,7 +68,7 @@ namespace Spellsword.Scenes
             Enemy zombie = new Zombie("BackwardsStill", "Ghost");
             Enemy wraith = new Wraith("BackwardsStill", "Ghost");
             Enemy ghost = new Ghost("BackwardsStill", "Ghost");
-            Enemy flower = new Flower("BackwardsStill", "Ghost");
+            Enemy flower = new Flower("FlowerWorld", "FlowerBattle");
             Enemy dragon = new Dragon("Dragon", "Dragon", "DragonSpecial");
             enemies = new List<WorldEnemy>();
             this.enemies.Add(new WorldEnemy(game, thisWorld, new Point(3, 7), welp)); // Welp

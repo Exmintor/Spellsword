@@ -38,7 +38,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="BasicEnemyAttack.cs" />
+    <Compile Include="FinalDesign\BasicEnemyAttack.cs" />
     <Compile Include="FinalDesign\Talents\AddSpellTalent.cs" />
     <Compile Include="FinalDesign\Abilities\BasicIceSpell.cs" />
     <Compile Include="FinalDesign\Abilities\BasicLightningSpell.cs" />
