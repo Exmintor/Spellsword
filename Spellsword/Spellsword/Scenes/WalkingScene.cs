@@ -80,10 +80,10 @@ namespace Spellsword.Scenes
 
             // More Temp Test
             swords = new List<WorldSword>();
-            Weapon iceShield = new IceShield("BasicSword", 8, 15);
-            Weapon iceSword = new IceSword("BasicSword", 20, 5);
-            Weapon lightningSword = new LightningSword("BasicSword", 30, 5);
-            Weapon focus = new BasicFocus("BasicSword");
+            Weapon iceShield = new IceShield("IceShield", 8, 15);
+            Weapon iceSword = new IceSword("IceSword", 20, 5);
+            Weapon lightningSword = new LightningSword("LightningSword", 30, 5);
+            Weapon focus = new BasicFocus("SpellFocus");
             this.swords.Add(new WorldSword(game, thisWorld, new Point(1, 7), iceShield)); // Ice Shield
             this.swords.Add(new WorldSword(game, thisWorld, new Point(1, 13), iceSword)); // Ice Blade
             this.swords.Add(new WorldSword(game, thisWorld, new Point(15, 7), lightningSword)); // Lightning Blade
