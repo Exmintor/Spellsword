@@ -21,6 +21,8 @@ namespace Spellsword.Scenes
 
         private Stack<BattleAction> battleQueue;
 
+        private bool gameOver;
+
         public BattleScene(SpellswordGame game, Character player, Character enemy) : base(game, null)
         {
             this.game = game;
@@ -31,6 +33,8 @@ namespace Spellsword.Scenes
             currentState = BattleSceneState.Idle;
 
             battleQueue = new Stack<BattleAction>();
+
+            gameOver = false;
         }
 
         public void ChangeCombatants(SpellswordGame game, Character player, Character enemy)
@@ -172,6 +176,10 @@ namespace Spellsword.Scenes
             {
                 ((Player)player.ThisEntity).GainRewards((((Enemy)entityThatDied).Reward));
             }
+            if(entityThatDied is Dragon)
+            {
+                gameOver = true;
+            }
             bothAlive = false;
         }
 
@@ -191,7 +199,12 @@ namespace Spellsword.Scenes
         }
         public void EndCombat()
         {
-            if (player.ThisEntity.IsAlive)
+
+            if(gameOver)
+            {
+                game.GameWon();
+            }
+            else if (player.ThisEntity.IsAlive)
             {
                 player.ThisEntity.HealToMax();
                 game.SwitchToWorld();

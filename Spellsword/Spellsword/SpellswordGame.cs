@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace Spellsword
 {
-    public enum GameState { World, Paused, Battle, MainMenu }
+    public enum GameState { World, Paused, Battle, MainMenu, WinState }
     public class SpellswordGame : Game
     {
         private Song currentSong;
@@ -93,6 +93,13 @@ namespace Spellsword
                 case GameState.MainMenu:
                     menuScene.Update(gameTime);
                     break;
+                case GameState.WinState:
+                    walkingScene.Update(gameTime);
+                    if(inputHandler.WasButtonPressed(Keys.R))
+                    {
+                        ResetGame();
+                    }
+                    break;
             }
             base.Update(gameTime);
         }
@@ -118,6 +125,10 @@ namespace Spellsword
                     walkingScene.Draw(spriteBatch);
                     menuScene.Draw(spriteBatch);
                     break;
+                case GameState.WinState:
+                    walkingScene.Draw(spriteBatch);
+                    spriteBatch.DrawString(Content.Load<SpriteFont>("Arial"), "    YOU WIN!\nPress 'R' to Reset", new Vector2(150, 150), Color.Red);
+                    break;
             }
             spriteBatch.End();
             base.Draw(gameTime);
@@ -127,7 +138,7 @@ namespace Spellsword
         {
             this.battleScene = new BattleScene(this, player, enemy);
             this.CurrentState = GameState.Battle;
-            SwitchSong();
+            SwitchBattleSong(enemy);
         }
 
         public void SwitchToWorld()
@@ -153,6 +164,16 @@ namespace Spellsword
         public void ResetGame()
         {
             Initialize();
+        }
+
+        public void GameWon()
+        {
+            this.CurrentState = GameState.WinState;
+            if (previousState == GameState.Battle)
+            {
+                battleScene.UnsubscribeDeathHandlers();
+                SwitchSong();
+            }
         }
 
         public void OpenMenu(Player player)
@@ -203,11 +224,45 @@ namespace Spellsword
             switch(CurrentState)
             {
                 case GameState.World:
-                    currentSong = this.Content.Load<Song>("WalkingMusic");
+                    currentSong = this.Content.Load<Song>("WorldMusic");
+                    break;
+                case GameState.WinState:
+                    currentSong = this.Content.Load<Song>("WorldMusic");
                     break;
                 case GameState.Battle:
                     currentSong = this.Content.Load<Song>("BattleMusic");
                     break;
+            }
+            MediaPlayer.Play(currentSong);
+            MediaPlayer.IsRepeating = true;
+        }
+
+        private void SwitchBattleSong(Character enemy)
+        {
+            MediaPlayer.Stop();
+            if (enemy is Dragon)
+            {
+                currentSong = this.Content.Load<Song>("DragonMusic");
+            }
+            else if(enemy is Welp)
+            {
+                currentSong = this.Content.Load<Song>("WelpMusic");
+            }
+            else if (enemy is Wraith)
+            {
+                currentSong = this.Content.Load<Song>("WraithMusic");
+            }
+            else if (enemy is Zombie)
+            {
+                currentSong = this.Content.Load<Song>("ZombieMusic");
+            }
+            else if (enemy is Ghost)
+            {
+                currentSong = this.Content.Load<Song>("GhostMusic");
+            }
+            else if (enemy is Flower)
+            {
+                currentSong = this.Content.Load<Song>("FlowerMusic");
             }
             MediaPlayer.Play(currentSong);
             MediaPlayer.IsRepeating = true;

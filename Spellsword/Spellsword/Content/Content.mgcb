@@ -427,3 +427,45 @@
 /processorParam:TextureFormat=Color
 /build:WraithSmall.png
 
+#begin DragonMusic.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:DragonMusic.mp3
+
+#begin FlowerMusic.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:FlowerMusic.mp3
+
+#begin GhostMusic.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:GhostMusic.mp3
+
+#begin WelpMusic.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:WelpMusic.mp3
+
+#begin WorldMusic.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:WorldMusic.mp3
+
+#begin WraithMusic.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:WraithMusic.mp3
+
+#begin ZombieMusic.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:ZombieMusic.mp3
+
