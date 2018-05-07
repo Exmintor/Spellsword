@@ -49,5 +49,10 @@ namespace Spellsword
                 return base.ChooseAction();
             }
         }
+
+        public void ResetTurnCounter()
+        {
+            turnCounter = 0;
+        }
     }
 }

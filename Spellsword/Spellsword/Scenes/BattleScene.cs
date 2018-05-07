@@ -191,7 +191,7 @@ namespace Spellsword.Scenes
         }
         public void EndCombat()
         {
-            if(player.ThisEntity.IsAlive)
+            if (player.ThisEntity.IsAlive)
             {
                 player.ThisEntity.HealToMax();
                 game.SwitchToWorld();

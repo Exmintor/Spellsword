@@ -28,6 +28,18 @@ namespace Spellsword
             this.pointLocation = pointLocation;
             this.Location = gameWorld.GetTileLocation(pointLocation);
             gameWorld.RegisterEntity(this, pointLocation);
+            if(this.thisEntity is Dragon)
+            {
+                this.Location -= new Vector2(32, 32);
+                gameWorld.RegisterEntity(this, new Point(pointLocation.X - 1, pointLocation.Y));
+                gameWorld.RegisterEntity(this, new Point(pointLocation.X + 1, pointLocation.Y));
+                gameWorld.RegisterEntity(this, new Point(pointLocation.X, pointLocation.Y - 1));
+                gameWorld.RegisterEntity(this, new Point(pointLocation.X, pointLocation.Y + 1));
+                gameWorld.RegisterEntity(this, new Point(pointLocation.X - 1, pointLocation.Y - 1));
+                gameWorld.RegisterEntity(this, new Point(pointLocation.X - 1, pointLocation.Y + 1));
+                gameWorld.RegisterEntity(this, new Point(pointLocation.X + 1, pointLocation.Y - 1));
+                gameWorld.RegisterEntity(this, new Point(pointLocation.X + 1, pointLocation.Y + 1));
+            }
         }
 
         public void Interact(Character agentInteracting)

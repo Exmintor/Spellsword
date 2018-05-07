@@ -35,6 +35,10 @@ namespace Spellsword
             }
             if(enemy.IsAlive)
             {
+                if(enemy is Dragon)
+                {
+                    ((Dragon)enemy).ResetTurnCounter();
+                }
                 enemy.HealToMax();
                 enemy.RemoveAllStatusEffects();
             }
