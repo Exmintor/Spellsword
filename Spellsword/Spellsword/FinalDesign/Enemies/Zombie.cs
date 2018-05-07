@@ -10,13 +10,20 @@ namespace Spellsword
     {
         public Zombie(string worldImage, string battleImage) : base(worldImage, battleImage)
         {
-            MaxHealth = 50;
-            Health = 50;
-            Strength = 1;
+            MaxHealth = 100;
+            Health = 100;
+            Strength = 2;
             Magic = 1;
-            Defense = 1;
+            Defense = 3;
 
-            Reward = new Reward(1);
+            this.AddWeakness(Element.Fire);
+
+            basicAction = new BasicEnemyAttack(this, Element.None, 25);
+
+            Talent iceTalent = new AddSpellTalent("Ice Lance", 1);
+            List<Talent> talentReward = new List<Talent>();
+            talentReward.Add(iceTalent);
+            Reward = new Reward(1, talentReward);
         }
     }
 }

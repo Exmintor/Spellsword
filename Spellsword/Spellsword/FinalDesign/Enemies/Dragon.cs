@@ -16,21 +16,23 @@ namespace Spellsword
 
         public Dragon(string worldImage, string battleImage, string superImage) : base(worldImage, battleImage)
         {
-            MaxHealth = 50;
-            Health = 50;
-            Strength = 1;
-            Magic = 1;
-            Defense = 1;
+            MaxHealth = 300;
+            Health = 300;
+            Strength = 5;
+            Magic = 5;
+            Defense = 5;
+
+            this.AddWeakness(Element.Lightning);
+            this.AddResistance(Element.Fire);
+
+            basicAction = new BasicEnemyAttack(this, Element.None, 40);
+            secondAction = new BasicFireball(this, 80);
 
             Reward = new Reward(1);
 
             firstImage = battleImage;
             secondImage = superImage;
             turnCounter = 0;
-
-            IWeapon weapon = new BasicSword("BasicSword", 10, 5);
-            basicAction = new BasicSwordAttack(this, weapon);
-            secondAction = new BasicFireball(this, 20);
         }
 
         public override IAction ChooseAction()

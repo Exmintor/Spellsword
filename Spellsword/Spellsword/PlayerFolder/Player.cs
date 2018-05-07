@@ -84,6 +84,10 @@ namespace Spellsword
         {
             CurrentTalents.Add(talent);
         }
+        public void RemoveAvailableTalent(Talent talent)
+        {
+            AvailableTalents.Remove(talent);
+        }
 
         public void GainRewards(Reward reward)
         {

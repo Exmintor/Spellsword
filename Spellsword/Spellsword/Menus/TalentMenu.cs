@@ -36,6 +36,7 @@ namespace Spellsword
             {
                 textMenu.SwitchOutString(currentCommands[controller.CurrentIndex].Description);
             }
+            currentCommands = UpdateCommands();
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -64,6 +65,19 @@ namespace Spellsword
                 AddTalentCommand newCommand = new AddTalentCommand(player, talent);
                 commands.Add(newCommand);
             }
+            return commands;
+        }
+
+        private List<ISpellswordCommand> UpdateCommands()
+        {
+            ISpellswordCommand backCommand = currentCommands.Last();
+            List<ISpellswordCommand> commands = new List<ISpellswordCommand>();
+            foreach (Talent talent in player.AvailableTalents)
+            {
+                AddTalentCommand newCommand = new AddTalentCommand(player, talent);
+                commands.Add(newCommand);
+            }
+            commands.Add(backCommand);
             return commands;
         }
 

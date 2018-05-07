@@ -16,6 +16,10 @@ namespace Spellsword
             Magic = 1;
             Defense = 1;
 
+            this.AddWeakness(Element.Fire);
+
+            basicAction = new BasicEnemyAttack(this, Element.None, 15);
+
             Reward = new Reward(1);
         }
     }

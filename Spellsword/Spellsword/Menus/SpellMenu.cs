@@ -28,7 +28,7 @@ namespace Spellsword
         public override void Update()
         {
             base.Update();
-            UpdateCommands();
+            currentCommands = UpdateCommands();
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -50,13 +50,23 @@ namespace Spellsword
             return spellList;
         }
 
-        private void UpdateCommands()
+        private List<ISpellswordCommand> UpdateCommands()
         {
-            for(int i = 0; i < currentCommands.Count - 1; i++)
+            ISpellswordCommand backCommand = currentCommands.Last();
+            List<ISpellswordCommand> spellList = new List<ISpellswordCommand>();
+            foreach (Attack attack in player.SpellList)
             {
-                player.SpellList[i].UpdateDescription();
-                currentCommands[i] = new EmptyCommand(player.SpellList[i].Name, player.SpellList[i].Description);
+                attack.UpdateDescription();
+                EmptyCommand command = new EmptyCommand(attack.Name, attack.Description);
+                spellList.Add(command);
             }
+            spellList.Add(backCommand);
+            return spellList;
+            //for (int i = 0; i < currentCommands.Count - 1; i++)
+            //{
+            //    player.SpellList[i].UpdateDescription();
+            //    currentCommands[i] = new EmptyCommand(player.SpellList[i].Name, player.SpellList[i].Description);
+            //}
         }
     }
 }

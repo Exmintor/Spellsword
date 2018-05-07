@@ -10,13 +10,20 @@ namespace Spellsword
     {
         public Wraith(string worldImage, string battleImage) : base(worldImage, battleImage)
         {
-            MaxHealth = 50;
-            Health = 50;
-            Strength = 1;
-            Magic = 1;
-            Defense = 1;
+            MaxHealth = 200;
+            Health = 200;
+            Strength = 2;
+            Magic = 4;
+            Defense = 4;
+            this.AddWeakness(Element.Ice);
+            this.AddResistance(Element.Lightning);
 
-            Reward = new Reward(1);
+            basicAction = new BasicEnemyAttack(this, Element.Lightning, 35);
+
+            Talent lightningTalent = new AddSpellTalent("Lightning", 2);
+            List<Talent> talentRewards = new List<Talent>();
+            talentRewards.Add(lightningTalent);
+            Reward = new Reward(2, talentRewards);
         }
     }
 }
