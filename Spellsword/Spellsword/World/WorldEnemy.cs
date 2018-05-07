@@ -53,6 +53,17 @@ namespace Spellsword
         private void OnEntityDied(Entity entityThatDied)
         {
             gameWorld.UnregisterEntity(pointLocation);
+            if (entityThatDied is Dragon)
+            {
+                gameWorld.UnregisterEntity(new Point(pointLocation.X - 1, pointLocation.Y));
+                gameWorld.UnregisterEntity(new Point(pointLocation.X + 1, pointLocation.Y));
+                gameWorld.UnregisterEntity(new Point(pointLocation.X, pointLocation.Y - 1));
+                gameWorld.UnregisterEntity(new Point(pointLocation.X, pointLocation.Y + 1));
+                gameWorld.UnregisterEntity(new Point(pointLocation.X - 1, pointLocation.Y - 1));
+                gameWorld.UnregisterEntity(new Point(pointLocation.X - 1, pointLocation.Y + 1));
+                gameWorld.UnregisterEntity(new Point(pointLocation.X + 1, pointLocation.Y - 1));
+                gameWorld.UnregisterEntity(new Point(pointLocation.X + 1, pointLocation.Y + 1));
+            }
             shouldDraw = false;
         }
 

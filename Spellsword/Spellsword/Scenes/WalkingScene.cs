@@ -64,9 +64,9 @@ namespace Spellsword.Scenes
             CreateEmptyTiles(game, mapFile);
 
             //Temp test
-            Enemy welp = new Welp("BackwardsStill", "Ghost");
-            Enemy zombie = new Zombie("BackwardsStill", "Ghost");
-            Enemy wraith = new Wraith("BackwardsStill", "Ghost");
+            Enemy welp = new Welp("WelpSmall", "Welp");
+            Enemy zombie = new Zombie("ZombieSmall", "Zombie");
+            Enemy wraith = new Wraith("WraithSmall", "Wraith");
             Enemy ghost = new Ghost("BackwardsStill", "Ghost");
             Enemy flower = new Flower("FlowerWorld", "FlowerBattle");
             Enemy dragon = new Dragon("Dragon", "Dragon", "DragonSpecial");
